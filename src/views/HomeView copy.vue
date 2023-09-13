@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h2>首頁內容</h2>
+    <h2>職缺強打推薦內容</h2>
     <!-- <TheWelcome。 -->
   </main>
 </template>

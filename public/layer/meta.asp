@@ -1,24 +1,12 @@
 <%Response.Buffer = true:Response.CharSet = "UTF-8":Session.CodePage = 65001%>
 <%
 		'取得當下網址'
-		queryS = Request.QueryString("seachType")
-		if queryS = "1" then
-				SEOTitle = "111年度大學及四技姓名查榜︱入學榜單查詢-1111人力銀行"
-				SEOKeywords = "姓名查榜、大學放榜、大學申請入學、四技放榜、四技申請入學、放榜"
-				SEODescription = "111年度年度(2022)學測、統測、指考放榜交叉查詢，可依姓名、應試碼、考區等不同查榜功能，快速查詢錄取結果！"
-				SEOUrl = "https://event.1111.com.tw/event22/22yAdmissionSystem/inquire?years=111&seachType=1"
-		elseif queryS = "2" then
-				SEOTitle = "111年度大學及四技應試號碼查榜︱入學榜單查詢-1111人力銀行"
-				SEOKeywords = "應試號碼查榜、大學放榜、大學申請入學、四技放榜、四技申請入學、放榜"
-				SEODescription = "111年度年度(2022)學測、統測、指考放榜交叉查詢，可依姓名、應試碼、考區等不同查榜功能，快速查詢錄取結果！"
-				SEOUrl = "https://event.1111.com.tw/event22/22yAdmissionSystem/inquire?years=111&seachType=2"
+				SEOTitle = "嗑糖!測出你的糖果類型找最適合的兼職打工| 1111人力銀行"
+				SEOKeywords = "打工,開學,歐趴糖,人格測驗,找工作,1111打工,找打工,高薪打工"
+				SEODescription = "開學了～來1111找最甜的打工機會！30秒馬上測出你是哪種糖果角色，找到適合的打工方向，零用錢賺飽飽！完成測驗即享有Line25點
+				抽獎資格，名額有限快來參加！"
+				SEOUrl = "https://event.1111.com.tw/event23/candyPT"
 
-		else
-				SEOTitle = "111年度大學及四技查榜服務︱入學榜單查詢-1111人力銀行1111"
-				SEOKeywords = "大學放榜、大學申請入學、四技放榜、四技申請入學、放榜、姓名查榜、應試碼查榜"
-				SEODescription = "111年度年度(2022)學測、統測、指考放榜交叉查詢，可依姓名、應試碼、考區等不同查榜功能，快速查詢錄取結果！"
-				SEOUrl = "https://event.1111.com.tw/event22/22yAdmissionSystem/"
-		end if 
 %>
 
 <title>
@@ -37,6 +25,7 @@
 <meta name="twitter:description" content="<%=SEODescription%>">
 <meta name="twitter:keywords" content="<%=SEOKeywords%>">
 <meta name="twitter:url" content="<%=SEOUrl%>" />
+<meta property="og:image" content="https://event.1111.com.tw/event23/candyPT/og.png"/>
 <script  type="application/ld+json">
 	[
 			{
@@ -47,7 +36,7 @@
 				"description": "<%=SEODescription%>",
 				"potentialAction": {
 						"@type": "SearchAction",
-						"target": "https://event.1111.com.tw/event22/22yAdmissionSystem/result?years=111&typeRef=1&schoolType=1&seachType=2&ticketNum={search_term_string}",
+						"target": "<%=SEOUrl%>",
 						"query-input": "required name=search_term_string"
 				}
 		},

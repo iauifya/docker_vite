@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h2>首頁內容</h2>
+    <h2>打工前停看聽內容</h2>
     <!-- <TheWelcome。 -->
   </main>
 </template>
