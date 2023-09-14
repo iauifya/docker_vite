@@ -1,7 +1,8 @@
 <template>
   <main>
     <h2>活動說明頁內容</h2>
-    <!-- <TheWelcome。 -->
+    
+    <div class="btn" @click="goQuiz()">立即測驗</div>
   </main>
 </template>
 
@@ -10,15 +11,21 @@
 
 
 <script setup>
-//import { loginCertificationFn} from '@/composition-api/index';
-// import TheWelcome from '../components/TheWelcome.vue'
-// import { postRSVCreate} from '@/composition-api/index';
-// const payload = {
-//         talentNo: '20220322',
-//         ticketNum: '20220322',
-//       }
-//       postRSVCreate(payload);
-// const dd = loginCertificationFn();
-// console.log('dd', dd);
+import { useRouter, useRoute } from "vue-router";
+import { useTalentNO } from '@/composable/useTalentNO.js'
+import { loginCertificationFn} from '@/composition-api/index';
+
+const { talentNO } = useTalentNO()
+const router = useRouter()
+
+const dd = loginCertificationFn()
+console.log("dd", dd);
+console.log(talentNO)
+
+const goQuiz = ()=> {
+  router.push('/quiz')
+}
+
+
 </script>
 

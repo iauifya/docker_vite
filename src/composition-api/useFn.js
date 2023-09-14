@@ -17,7 +17,7 @@ export function useLoginMemberCertification() {
         if(!_.isEmpty(res)){
             if (_.isEmpty(res.data.talentNo)) {
                 alert('您尚未登入');
-                const cookieRouterWin_encodeURI = encodeURIComponent(import.meta.env.VITE_BASE_URL);
+                const cookieRouterWin_encodeURI = encodeURIComponent(import.meta.env.VITE_BASE_URL + 'activity');
                 location.href = location.host === "192.168.1.234" ? import.meta.env.VITE_MEMBER_LOGIN + cookieRouterWin_encodeURI + "&IsThirdParty=true" : import.meta.env.VITE_MEMBER_LOGIN + cookieRouterWin_encodeURI + "&IsThirdParty=true";
             }else if (res.data.loginType !== 4) {
                 // alert('未雙認證');
