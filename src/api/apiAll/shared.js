@@ -21,6 +21,10 @@ export const TalentNo = () => server.get(`${domain.value}/eventAPI/tool/api_chec
 export const Job = () => server.get(`${domain.value}/eventAPI/tool/api_get_job.asp`).go();
 // // 搜尋公司
 export const Corp = () => server.get(`${domain.value}/eventAPI/tool/api_get_corp.asp`).go();
+
+//測試
+export const All = (payload) => server.get(`${domain.value}/eventAPI/23ykaohsiungfindjob/api_get.asp`, payload).isLoading(false).go();
+
 // error log
 export const ip = () => server.get('https://api.ipify.org/?format=json').go();
 export const error = (payload) => server.post(`${domain.value}/eventAPI/api/ErrorLog/LogCreate`, payload).go();

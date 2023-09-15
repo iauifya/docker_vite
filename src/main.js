@@ -6,6 +6,11 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import axios from './api/basic/default.js'
 import './assets/js/error.js'
+import "./assets/css/main.min.css";
+import "./assets/css/questions.min.css";
+import "./assets/css/testResult.min.css";
+import "./assets/css/award.min.css"
+
 
 const app = createApp(App)
 app.config.errorHandler = function (err, vm, info) {

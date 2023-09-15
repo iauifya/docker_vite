@@ -1,6 +1,6 @@
 
 // import { ref } from 'vue';
-import { JobGet , CorpGet, RSVCreatePost} from '@/api/index'
+import { JobGet , CorpGet, RSVCreatePost, AllGet} from '@/api/index'
 
 import _ from "lodash"
 
@@ -52,3 +52,18 @@ export async function RSVCreatePostFn(postData) {
   }
 }
 
+
+
+export async function AllGetFN(payload) {
+  let corpList = {};
+  await AllGet(payload).then(res => {
+    if(!_.isEmpty(res)){
+      corpList = res
+    }
+    // console.log('AllGetFN', res);
+  });
+
+  return {
+    corpList
+  }
+}

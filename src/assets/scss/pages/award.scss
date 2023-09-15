@@ -1,0 +1,161 @@
+// mixins
+@import '../mixins/breakpoint';
+@import '../mixins/color';
+
+
+.block-award {
+    padding: 20px 0 35px 0;
+    @include b768 {
+        padding: 60px 0 80px 0;
+    }
+    .winning {
+        margin-bottom: 60px;
+        .winning-list {
+            width: 100%;
+            max-width: 810px;
+            margin-bottom: 30px;
+        }
+        .item {
+            width: 100%;
+            margin-bottom: 18px;
+            @include b320 {
+                width: calc(100% / 2);
+            }
+            @include b576 {
+                width: calc(100% / 3);
+            }
+            @include b768 {
+                width: calc(100% / 4);
+                margin-bottom: 38px;
+            }
+            span {
+                color: var(--system-grey-11);
+                font-size: 16px;
+                font-weight: 700;
+                @include b576 {
+                    font-size: 20px;
+                }
+            }
+            .date {
+                font-size: 20px;
+                @include b576 {
+                    font-size: 26px;
+                }
+            }
+        }
+        .profile-pic {
+            line-height: 0;
+            padding-top: 16px;
+            padding-bottom: 13px;
+            img {
+                object-fit: cover;
+                width: 130px;
+                height: 130px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.20);
+                border-radius: 50%;
+                @include b576 {
+                    width: 167px;
+                    height: 167px;
+                }
+            }
+        }
+    }
+    .receive {
+        .content {
+            border-radius: 24px;
+            background: var(--system-white);
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.20);
+            padding: 0 18px 45px 18px;
+            @include b576 {
+                padding: 0 50px 45px 50px;
+            }
+        }
+        .dot-element {
+            height: 55px;
+            @include b576 {
+                height: 62px;
+            }
+        }
+        .info {
+            font-size: 15px;
+            color: var(--system-grey-11);
+            letter-spacing: 0.4px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            @include b768 {
+                font-size: 16px;
+            }
+            h3 {
+                color: var(--system-grey-6);
+                font-size: 18px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-bottom: 8px;
+                @include b768 {
+                    font-size: 20px;
+                }
+                &:last-of-type {
+                    border-top: var(--system-pink-11) dashed 2px;
+                    padding-top: 20px;
+                    margin-top: 25px;
+                }
+            }
+        }
+    }
+}
+.pagination {
+    .page-item {
+        margin: 0 8px;
+        .page-link {
+            border-radius: 40px;
+            background: var(--system-grey-21);
+            color: var(--system-blue-2);
+            font-family: Prompt!important;
+            font-size: 20px;
+            font-weight: 500;
+            width: 40px;
+            height: 40px;
+            @include b320 {
+                width: 44px;
+                height: 44px;
+            }
+        }
+        &:first-of-type,&:last-of-type {
+            .page-link {
+                border-radius: 12px;
+                background: var(--system-grey-17);
+                box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+                width: 36px;
+                height: 36px;
+                img {
+                    width: 9px;
+                    height: 15px;
+                    filter: invert(100%) sepia(1%) saturate(5377%) hue-rotate(68deg) brightness(119%) contrast(100%);
+                }
+            }
+        }
+        &:first-of-type {
+            margin: 0 8px 0 0;
+            @include b320 {
+                margin: 0 16px 0 0;
+            }
+            .page-link {
+                img {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        &:last-of-type {
+            margin: 0 0 0 8px;
+            @include b320 {
+                margin: 0 0 0 16px;
+            }
+        }
+    }
+    .page-item.active {
+        .page-link {
+            color: var(--system-grey-2);
+            background: var(--system-grey-21);
+        }
+    }
+}
