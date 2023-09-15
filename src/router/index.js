@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import home from '@/views/HomeView.vue'
-import Activity from '@/views/Activity.vue'
-import Quiz from '@/views/Quiz.vue'
-import JobRecommend from '@/views/JobRecommend.vue'
-import Working from '@/views/Working.vue'
-import Winner from '@/views/Winner.vue'
+import activity from '@/views/Activity.vue'
+import quiz from '@/views/Quiz.vue'
+import jobrecommend from '@/views/JobRecommend.vue'
+import working from '@/views/Working.vue'
+import winner from '@/views/Winner.vue'
 
 
 
@@ -30,7 +30,7 @@ const router = createRouter ({
     {
       path: '/activity',
       name: 'activity',
-      component: Activity,
+      component: activity,
       meta: {
         title: '活動說明',
       }
@@ -38,7 +38,7 @@ const router = createRouter ({
     {
       path: '/quiz',
       name: 'quiz',
-      component:Quiz,
+      component:quiz,
       meta: {
         title: '測你的甜',
       }
@@ -46,7 +46,7 @@ const router = createRouter ({
     {
       path: '/jobrecommend',
       name: 'jobrecommend',
-      component:JobRecommend,
+      component:jobrecommend,
       meta: {
         title: '職缺強打推薦',
       }
@@ -54,7 +54,7 @@ const router = createRouter ({
     {
       path: '/working',
       name: 'working',
-      component:Working,
+      component:working,
       meta: {
         title: '打工前停看聽',
       }
@@ -62,7 +62,7 @@ const router = createRouter ({
     {
       path: '/winner',
       name: 'winner',
-      component:Winner,
+      component:winner,
       meta: {
         title: '得獎公告',
       }

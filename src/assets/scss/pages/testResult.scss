@@ -1,0 +1,323 @@
+// mixins
+@import '../mixins/breakpoint';
+@import '../mixins/color';
+
+.block-test-result {
+    padding: 30px 0;
+    @include b768 {
+        padding: 60px 0;
+    }
+    @include b992 {
+        padding: 100px 0;
+    }
+}
+.result {
+    border-radius: 20px;
+    background: var(--system-white);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.20);
+    padding: 10px;
+    margin-bottom: 26px;
+    @include b320 {
+        padding: 16px;
+    }
+    @include b768 {
+        margin-right: 16px;
+        flex: 1;
+        margin-bottom: 0;
+    }
+    .result-card {
+        border: var(--system-pink-4) solid 7px;
+        border-radius: 20px;
+        padding: 20px 15px;
+        @include b320 {
+            padding: 20px;
+        }
+        @include b992 {
+            padding: 40px;
+        }
+    }
+    h1.name {
+        &::after {
+            content: "";
+            display: none;
+            width: 100%;
+            height: 4px;
+            background: var(--system-grey-20);
+            flex: 1;
+            margin-left: 20px;
+            @include b992 {
+                display: block;
+            }
+        }
+        span {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--system-grey-4);
+            background: url(../../assets/images/result/title-bg-element.svg) 0 0 no-repeat;
+            width: 188px;
+            height: 47px;
+            @include b576 {
+                font-size: 32px;
+            }
+        }
+    }
+    .candy-img {
+        width: 100%;
+        @include b992 {
+            flex: 1;
+        }
+        img {
+            padding: 37px 18px 37px 18px;
+            max-width: 100%;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+    .jobs {
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--system-black);
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        a {
+            color: var(--system-blue-1);
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .candy-info {
+        width: 100%;
+        padding-top: 16px;
+        @include b992 {
+            flex: 2;
+            margin-left: 34px;
+            padding-top: 24px;
+        }
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--system-black);
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--system-grey-8);
+            border-bottom: var(--system-pink-11) dashed 2px;
+            padding-bottom: 10px;
+            margin-bottom: 17px;
+        }
+    }
+    .btn-test-again {
+        padding-top: 10px;
+        @include b576 {
+            padding-top: 0;
+        }
+        a {
+            border-radius: 10px;
+            border: 2px solid var(--system-pink-1);
+            background: var(--system-pink-1);
+            display: inline-block;
+            color: var(--system-white);
+            font-size: 23px;
+            line-height: normal;
+            font-weight: 400;
+            padding: 2px 36px;
+            @include b576 {
+                padding: 6px 22px;
+            }
+            &:hover {
+                background: var(--system-pink-2);
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.20);
+                border: 2px solid var(--system-pink-2);
+            }
+        }
+    }
+    .not-logged {
+        .candy-info,.candy-img {
+            flex: none;
+        }
+        .candy-info {
+            margin-left: 0;
+            p {
+                font-size: 16px;
+                color: var(--system-black);
+                @include b576 {
+                    font-size: 26px;
+                }
+            }
+        }
+        .candy-img {
+            img {
+                padding: 0;
+                width: 100%;
+                border-radius: 24px;
+            }
+        }
+        .btn-test-again {
+            padding-top: 16px;
+        }
+    }
+}
+.recommend {
+    border-radius: 20px;
+    background: var(--system-pink-3);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.20);
+    @include b768 {
+        max-width: 350px;
+    }
+    @include b992 {
+        max-width: 370px;
+    }
+    .dot-element {
+        height: 45px;
+        background: var(--system-white);
+        border-radius: 20px 20px 0 0;
+        padding-left: 20px;
+    }
+    .recommend-card {
+        padding: 20px 15px 30px 15px;
+        @include b576 {
+            padding: 15px;
+        }
+        @include b992 {
+            padding: 25px;
+        }
+        h2 {
+            font-size: 24px;
+            @include b320 {
+                font-size: 26px;
+            }
+            @include b576 {
+                font-size: 28px;
+            }
+            img {
+                width: 38px;
+                margin-right: 9px;
+                @include b320 {
+                    width: 41px;
+                }
+            }
+        }
+    }
+    .card-jobs {
+        border-radius: 10px;
+        background: var(--system-white);
+        padding: 16px;
+        @include b576 {
+            padding: 20px 18px;
+        }
+        .item {
+            font-size: 16px;
+            line-height: 1.5;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: var(--system-grey-19) solid 1px;
+            padding-left: 6px;
+            padding-right: 6px;
+            @include b768 {
+                font-size: 14px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+    }
+    .item {
+        h3 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            @include b576 {
+                flex: 1;
+                margin-right: 16px;
+            }
+            a {
+                font-size: 16px;
+                font-weight: 700;
+                color: var(--system-grey-7);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        .salary {
+            color: var(--system-brown-2);
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            @include b576 {
+                max-width: 100px;
+            }
+        }
+        .company {
+            color: var(--system-grey-7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .area {
+            color: var(--system-grey-13);
+            font-size: 15px;
+            @include b768 {
+                font-size: 14px;
+            }
+        }
+        .job-info {
+            width: 100%;
+            @include b576 {
+                width: auto;
+            }
+        }
+    }
+    .btn-view-job {
+        padding-top: 10px;
+        @include b320 {
+            padding-top: 0;
+        }
+        a {
+            border-radius: 6px;
+            background: var(--system-pink-2);
+            color: var(--system-white);
+            padding: 4px 20px;
+            font-size: 16px;
+            @include b768 {
+                font-size: 12px;
+            }
+            &:hover {
+                background: var(--system-pink-1);
+            }
+        }
+    }
+    .btn-view-more {
+        a {
+            border-radius: 10px;
+            border: 2px solid var(--system-white);
+            font-size: 22px;
+            color: var(--system-white);
+            max-width: 180px;
+            padding: 7px 0;
+            @include b576 {
+                font-size: 23px;
+            }
+            &:hover {
+                background: var(--system-pink-2);
+            }
+            img {
+                width: 26px;
+            }
+        }
+    }
+}

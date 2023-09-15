@@ -1,6 +1,4 @@
 import { isOpenLoading } from './apiFn'
-import { catchError } from "@/assets/js/error.js"
-
 export default class{
     constructor(axios){
         this.loading = true;
@@ -8,11 +6,20 @@ export default class{
         this.apiName = '';
         this.payload = null;
         this.axios = axios;
-        this.errTimes = 0;
     }
 
-    get(api){
-        this.apiName = api;
+    get(api,payload){
+        let newpayload= "?"
+        if(payload) {
+            const payloadKeys =Object.keys(payload)
+            for (let i=0; i < payloadKeys.length; i++) {
+                if(payload[payloadKeys[i]]) {
+                  newpayload+= (payloadKeys[i]+"="+payload[payloadKeys[i]] + "&")
+                }
+             }
+        }
+
+        this.apiName = api+newpayload;
         this.methods = 'get';
         return this;
     }
@@ -39,6 +46,7 @@ export default class{
                     isOpenLoading(false)
                     resolve(res)
                 }).catch(err=> {
+                    log.onError({ name: "AxiosError", api: this.apiName, err: err });
                     reject(err)
                 })
             })
@@ -49,28 +57,18 @@ export default class{
             return new Promise((resolve, reject) => {
                 this.axios.post(this.apiName, this.payload).then(res => {
                     isOpenLoading(false)
-                    if(res.data.status < 1) {
-                        if(this.apiName !== '/eventAPI/api/ErrorLog/LogCreate') {
-                            res.data.reason = { 
-                            name: 'ApiError',
-                            api: this.apiName,
-                            payload: JSON.stringify(this.payload)
-                            }
-                        } else {
-                            if(this.errTimes > 0) return
-                            this.errTimes++
-                            res.data.reason = {
-                            name: 'Repeat',
-                            api: this.apiName,
-                            type: this.payload.type,
-                            msg: res.data.msg
-                            }
-                        }
-                        catchError(res.data)
-                    }
+                    // if (res.data.status < 1)
+                    // log.onError({
+                    //     name: "ApiError",
+                    //     api: this.apiName,
+                    //     payload: JSON.stringify(this.payload),
+                    //     message: res.data.msg,
+                    //     status: res.data.status
+                    // });
                     resolve(res)
                 })
                 .catch(err => {
+                    log.onError({ name: "AxiosError", api: this.apiName, payload: JSON.stringify(this.payload), err: err });
                     reject(err)
                 })
             })
