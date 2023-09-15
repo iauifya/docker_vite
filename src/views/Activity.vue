@@ -15,14 +15,15 @@ import { useRouter, useRoute } from "vue-router";
 import { useTalentNO } from '@/composable/useTalentNO.js'
 import { loginCertificationFn} from '@/composition-api/index';
 
-const { talentNO }  = useTalentNO()
+const talentNO = useTalentNO()
 const router = useRouter()
 
-const dd = loginCertificationFn()
-console.log("dd", dd);
+
 console.log(talentNO)
 
 const goQuiz = ()=> {
+  const dd = loginCertificationFn()
+  console.log("dd", dd);
   router.push('/quiz')
 }
 
