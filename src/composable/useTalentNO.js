@@ -8,7 +8,9 @@ export function useTalentNO(){
     },{})
 
     console.log(cookies.talents);
-
+    if(!cookies.talents){
+        return undefined
+    }
     const talents = cookies.talents.split('&')
     console.log(talents)
     const talentIDRegex = /talentID=(\d+)/;
@@ -29,5 +31,5 @@ export function useTalentNO(){
     // talentNO = talentNO[0]
     
 
-    return { talentNO }
+    return talentNO 
 }
