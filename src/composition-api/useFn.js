@@ -21,7 +21,7 @@ export function useLoginMemberCertification() {
                 //const fullUrl = import.meta.env.VITE_BASE_URL + pathQuiz
                 const cookieRouterWin_encodeURI = encodeURIComponent(import.meta.env.VITE_BASE_URL + pathQuiz);
                 console.log(cookieRouterWin_encodeURI)
-                location.href = location.host === "192.168.1.234" ? import.meta.env.VITE_MEMBER_LOGIN + cookieRouterWin_encodeURI + "&IsThirdParty=true" : import.meta.env.VITE_MEMBER_LOGIN + cookieRouterWin_encodeURI + "&IsThirdParty=true";
+                location.href = location.host === "192.168.1.234" ? "http://192.168.1.234/talents/memberlogin.asp?ref=" + cookieRouterWin_encodeURI + "&IsThirdParty=true" : "https://www.1111.com.tw/login/index?ReturnUrl=" + cookieRouterWin_encodeURI + "&IsThirdParty=true";
             }else if (res.data.loginType !== 4) {
                 // alert('未雙認證');
                 location.href = import.meta.env.VITE_MEMBER_CERTIFICATION + location.href
