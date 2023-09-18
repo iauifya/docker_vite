@@ -3,6 +3,7 @@ import home from '@/views/HomeView.vue'
 import activity from '@/views/Activity.vue'
 import quiz from '@/views/Quiz.vue'
 import jobrecommend from '@/views/JobRecommend.vue'
+import jobrecommendlogin from '@/views/JobRecommendLogin.vue'
 import working from '@/views/Working.vue'
 import winner from '@/views/Winner.vue'
 
@@ -49,6 +50,14 @@ const router = createRouter ({
       component:jobrecommend,
       meta: {
         title: '職缺強打推薦',
+      }
+    },
+    {
+      path: '/jobrecommendlogin',
+      name: 'jobrecommendlogin',
+      component:jobrecommendlogin,
+      meta: {
+        title: '職缺強打推薦登入',
       }
     },
     {
