@@ -1,7 +1,118 @@
 <template>
   <main>
-    <h2>職缺強打內容</h2>
-    <!-- <TheWelcome。 -->
+    <section class="block-test-result">
+      <div class="container-inner d-flex align-items-start align-items-lg-stretch flex-wrap">
+        <div class="result d-flex">
+          <div class="result-card d-flex flex-column">
+            <h1 class="name d-flex align-items-center justify-content-center justify-content-lg-start"><span class="d-inline-block text-center">薄荷涼糖</span></h1>
+            <div class="d-flex flex-wrap h-100">
+                <div class="candy-img">
+                    <img src="@/assets/images/result/candy01.svg" alt="薄荷涼糖" width="146" height="146" decoding="async" loading="lazy">
+                    <!-- <img src="assets/images/result/candy02.webp" alt="棒棒糖" width="146" height="231" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy03.webp" alt="水果軟糖" width="122" height="144" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy04.webp" alt="咖啡硬糖" width="145" height="146" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy05.webp" alt="跳跳糖" width="146" height="135" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy06.webp" alt="甘草糖" width="146" height="146" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy07.webp" alt="巧克力" width="143" height="126" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy08.webp" alt="喉糖" width="157" height="120" decoding="async" loading="lazy">
+                    <img src="assets/images/result/candy09.webp" alt="變色糖" width="146" height="142" decoding="async" loading="lazy"> -->
+                    <div class="jobs">
+                        <h3>推薦職務：</h3>
+                        <p><a href="#" target="_blank">儲備幹部</a>、<a href="#" target="_blank">業務類</a></p>
+                    </div>
+                </div>
+                <div class="candy-info">
+                    <h3>性格概述</h3>
+                    <p>不畏挑戰的你，一旦設定目標便會全力衝刺，如同薄荷涼糖的嗆涼，是股不容忽視的強大氣場</p>
+                    <h3>優點</h3>
+                    <p>主動積極、具強烈的目標執行力，分析敏銳，決斷的決策能力。</p>
+                    <h3>需多留意</h3>
+                    <p>可能發展為自大或控制欲強，難以同理他人情緒行為。</p>
+                </div>
+                <div class="btn-test-again text-center w-100 mt-auto">
+                    <a @click="quizAgain">再測一次</a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="recommend w-100">
+          <div class="recommend-element d-flex align-items-center">
+              <span class="dot d-inline-block"></span>
+              <span class="dot d-inline-block"></span>
+              <span class="dot d-inline-block"></span>
+          </div>
+          <div class="recommend-card">
+              <h2 class="d-flex align-items-center justify-content-center"><img src="@/assets/images/result/icon-recommend-1.svg" alt="適合的打工推薦" width="41" height="44" decoding="async">適合的打工推薦</h2>
+              <div class="card-jobs my-3 my-sm-2 my-lg-3">
+                  <div class="item">
+                      <div class="d-flex align-items-center flex-wrap">
+                          <h3><a href="#" target="_blank" class="d-block">【亞馬遜Amazon】電商實習生 (兼職一年期、轉正機會) Amazon Project Assistant Intern（Part-time） - 高雄市</a></h3>
+                          <span class="salary w-100 text-xs-end">時薪 180元以上</span>
+                      </div>
+                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                          <div class="job-info d-flex flex-column">
+                              <span class="company">飛輪電商有限公司</span>
+                              <span class="area">高雄市新興區</span>
+                          </div>
+                          <div class="btn-view-job">
+                              <a href="#" target="_blank" class="d-block">查看職缺</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="d-flex align-items-center flex-wrap">
+                          <h3><a href="#" target="_blank" class="d-block">[Hotel dùa]‘etage15西餐廳全時兼職夥伴#ㄧ段班8.5小時</a></h3>
+                          <span class="salary w-100 text-xs-end">時薪 180元</span>
+                      </div>
+                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                          <div class="job-info d-flex flex-column">
+                              <span class="company">都會生活開發股份有限公司</span>
+                              <span class="area">高雄市新興區</span>
+                          </div>
+                          <div class="btn-view-job">
+                              <a href="#" target="_blank" class="d-block">查看職缺</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="d-flex align-items-center flex-wrap">
+                          <h3><a href="#" target="_blank" class="d-block">台北射箭兼職助教</a></h3>
+                          <span class="salary w-100 text-xs-end">時薪 180元以上</span>
+                      </div>
+                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                          <div class="job-info d-flex flex-column">
+                              <span class="company">一起玩有限公司(覺觀射藝)</span>
+                              <span class="area">台北市內湖區</span>
+                          </div>
+                          <div class="btn-view-job">
+                              <a href="#" target="_blank" class="d-block">查看職缺</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="d-flex align-items-center flex-wrap">
+                          <h3><a href="#" target="_blank" class="d-block">拉亞-中壢兼職【時薪最高可達$180】彈性排班</a></h3>
+                          <span class="salary w-100 text-xs-end">時薪 176~180元</span>
+                      </div>
+                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                          <div class="job-info d-flex flex-column">
+                              <span class="company">商邦餐飲有限公司</span>
+                              <span class="area">桃園市中壢區</span>
+                          </div>
+                          <div class="btn-view-job">
+                              <a href="#" target="_blank" class="d-block">查看職缺</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="btn-view-more pt-2">
+                  <a href="#" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -10,18 +121,18 @@
 
 
 <script setup>
-import { reactive, ref } from "vue"
-// import { loginCertificationFn} from '@/composition-api/index';
-// import TheWelcome from '../components/TheWelcome.vue'
-// import { postRSVCreate} from '@/composition-api/index';
-// const payload = {
-//         talentNo: '20220322',
-//         ticketNum: '20220322',
-//       }
-//       postRSVCreate(payload);
+import axios from "axios";
+import { ref, reactive, onMounted } from 'vue'
+import { useRouter, useRoute } from "vue-router";
+import { useTalentNO } from '@/composable/useTalentNO.js'
+//import { loginCertificationFn} from '@/composition-api/index';
 // const dd = loginCertificationFn();
 // console.log('dd', dd);
+const router = useRouter()
+const talentNO = useTalentNO()
 
+//const quizResult = ref([]) json檔
+const jobList = ref([])
 const testResultJson = reactive ([
   {
     number: '1', 
@@ -105,6 +216,36 @@ const testResultJson = reactive ([
     warning: '凡事保留餘地、善變而優柔寡斷易錯過時機',
   },
 ])
+const quizAgain = () => {
+  if(!talentNO){
+    router.push('/jobrecommendlogin')
+  }
+  router.push('/quiz')
+}
+
+onMounted(() => {
+  //測驗結果對應
+  // axios.get('')
+  // .then(res => {
+  //   console.log(res);
+  //   quizResult = quizResult.filter((item)=>{
+  //     item.number = res.dataList.id
+  //   })
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
+
+  //接職缺api
+  // axios.get('http://192.168.1.234/eventapi/tool/api_get_job.asp?d0=180210')
+  // .then(res => {
+  //   console.log(res);
+  //   jobList.value = res
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
+})
 
 </script>
 
