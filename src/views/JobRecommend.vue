@@ -126,12 +126,9 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 import { useTalentNO } from '@/composable/useTalentNO.js'
 //import { loginCertificationFn} from '@/composition-api/index';
-// const dd = loginCertificationFn();
-// console.log('dd', dd);
 const router = useRouter()
 const talentNO = useTalentNO()
 
-//const quizResult = ref([]) json檔
 const jobList = ref([])
 const testResultJson = reactive ([
   {
@@ -224,6 +221,9 @@ const quizAgain = () => {
 }
 
 onMounted(() => {
+  if(!talentNO){
+    router.replace('/jobrecommendlogin')
+  }
   //測驗結果對應
   // axios.get('')
   // .then(res => {

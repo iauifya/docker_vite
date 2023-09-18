@@ -66,6 +66,7 @@
 <script setup>
 import { ref,reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router"
+import { loginCertificationFn} from '@/composition-api/index'
 import { useTalentNO } from '@/composable/useTalentNO.js'
 import calcScore from '@/composable/calcScore.js'
 import one from "@/assets/images/questions/person_01.svg";
@@ -183,16 +184,16 @@ const nextQuestion = ()=>{
         answers.push(currentAnswer.value)
         // currentQuestionId++
         if (currentQuestionIndex.value < questions.length - 1) {
-            // 切换到下一个问题
+            // 切換到下一個問題
             currentQuestionIndex.value++;
             currentAnswer.value = '';
             const formCheckElements = document.querySelectorAll('.form-check');
             formCheckElements.forEach(function(formCheck) {
-                // 將當前點擊的元素添加 'active' 類別
+                // 將當前點擊的元素移除 'active' 類別
                 formCheck.classList.remove('active');
               });
         } else {
-            // 提交答案，这里可以通过API将答案发送到服务器
+            // 提交答案，打API將答案送出去
             console.log('提交答案', answers);
             
             // let result = answers.reduce((obj, item) => {
@@ -203,12 +204,12 @@ const nextQuestion = ()=>{
             const possibleNumbers = [1, 2, 3, 4];
 
             let result = possibleNumbers.reduce((obj, item) => {
-                obj[item] = 0; // 初始化所有可能的数字为 0
+                obj[item] = 0; // 初始化所有可能的數字等於0的情況
                 return obj;
             }, {});
 
             answers.forEach((item) => {
-                result[item]++; // 对出现的数字进行计数
+                result[item]++; // 對出現的數字進行記數
             });
 
             console.log(result);
@@ -234,6 +235,9 @@ const nextQuestion = ()=>{
 
 
 onMounted(() => {
+  if(!talentNO){
+    loginCertificationFn()
+  }
   document.addEventListener('DOMContentLoaded', ()=> {
     const formCheckElements = document.querySelectorAll('.form-check');
     formCheckElements.forEach(function(formCheck) {

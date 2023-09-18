@@ -22,8 +22,7 @@ const router = useRouter()
 console.log(talentNO)
 
 const goQuiz = ()=> {
-  const dd = loginCertificationFn()
-  console.log("dd", dd);
+  loginCertificationFn()
   router.push('/quiz')
 }
 
