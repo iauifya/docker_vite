@@ -212,6 +212,7 @@
         border-radius: 10px;
         background: var(--system-white);
         padding: 16px;
+        min-height: 388px;
         @include b576 {
             padding: 20px 18px;
         }
@@ -277,8 +278,13 @@
         }
         .job-info {
             width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             @include b576 {
                 width: auto;
+                flex: 1;
+                margin-right: 12px;
             }
         }
     }

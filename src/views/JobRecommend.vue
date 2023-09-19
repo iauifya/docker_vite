@@ -45,63 +45,18 @@
           <div class="recommend-card">
               <h2 class="d-flex align-items-center justify-content-center"><img src="@/assets/images/result/icon-recommend-1.svg" alt="適合的打工推薦" width="41" height="44" decoding="async">適合的打工推薦</h2>
               <div class="card-jobs my-3 my-sm-2 my-lg-3">
-                  <div class="item">
+                  <div v-for="(item, index) in jobList" :key="index" class="item">
                       <div class="d-flex align-items-center flex-wrap">
-                          <h3><a href="#" target="_blank" class="d-block">【亞馬遜Amazon】電商實習生 (兼職一年期、轉正機會) Amazon Project Assistant Intern（Part-time） - 高雄市</a></h3>
-                          <span class="salary w-100 text-xs-end">時薪 180元以上</span>
+                          <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
+                          <span class="salary w-100 text-xs-end">{{item.salary}}</span>
                       </div>
-                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                      <div class="d-flex flex-wrap flex-sm-nowrap justify-content-end justify-content-sm-between align-items-end">
                           <div class="job-info d-flex flex-column">
-                              <span class="company">飛輪電商有限公司</span>
-                              <span class="area">高雄市新興區</span>
+                              <span class="company">{{item.organs_organ}}</span>
+                              <span class="area">{{item.workcity.split('_')[1]}}</span>
                           </div>
                           <div class="btn-view-job">
-                              <a href="#" target="_blank" class="d-block">查看職缺</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="d-flex align-items-center flex-wrap">
-                          <h3><a href="#" target="_blank" class="d-block">[Hotel dùa]‘etage15西餐廳全時兼職夥伴#ㄧ段班8.5小時</a></h3>
-                          <span class="salary w-100 text-xs-end">時薪 180元</span>
-                      </div>
-                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                          <div class="job-info d-flex flex-column">
-                              <span class="company">都會生活開發股份有限公司</span>
-                              <span class="area">高雄市新興區</span>
-                          </div>
-                          <div class="btn-view-job">
-                              <a href="#" target="_blank" class="d-block">查看職缺</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="d-flex align-items-center flex-wrap">
-                          <h3><a href="#" target="_blank" class="d-block">台北射箭兼職助教</a></h3>
-                          <span class="salary w-100 text-xs-end">時薪 180元以上</span>
-                      </div>
-                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                          <div class="job-info d-flex flex-column">
-                              <span class="company">一起玩有限公司(覺觀射藝)</span>
-                              <span class="area">台北市內湖區</span>
-                          </div>
-                          <div class="btn-view-job">
-                              <a href="#" target="_blank" class="d-block">查看職缺</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="d-flex align-items-center flex-wrap">
-                          <h3><a href="#" target="_blank" class="d-block">拉亞-中壢兼職【時薪最高可達$180】彈性排班</a></h3>
-                          <span class="salary w-100 text-xs-end">時薪 176~180元</span>
-                      </div>
-                      <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                          <div class="job-info d-flex flex-column">
-                              <span class="company">商邦餐飲有限公司</span>
-                              <span class="area">桃園市中壢區</span>
-                          </div>
-                          <div class="btn-view-job">
-                              <a href="#" target="_blank" class="d-block">查看職缺</a>
+                              <a :href="item.link" target="_blank" class="d-block">查看職缺</a>
                           </div>
                       </div>
                   </div>
@@ -130,7 +85,7 @@ const router = useRouter()
 const talentNO = useTalentNO()
 
 const jobList = ref([])
-const testResultJson = reactive ([
+const quizResult = reactive ([
   {
     number: '1', 
     title: '薄荷涼糖', 
@@ -139,6 +94,7 @@ const testResultJson = reactive ([
     feature: '不畏挑戰的你，一旦設定目標便會全力衝刺，如同薄荷涼糖的嗆涼，是股不容忽視的強大氣場', 
     advantage: '主動積極、具強烈的目標執行力，分析敏銳，決斷的決策能力', 
     warning: '可能發展為自大或控制欲強，難以同理他人情緒行為。',
+    jobParam: '?col=da&d0=120211,120213,120214,100108,100101,100106,120205&page=1&sort=da desc&tt=2', 
   },
   {
     number: '2', 
@@ -148,6 +104,7 @@ const testResultJson = reactive ([
     feature: '外向熱情、歡樂一百點是你的獨特魅力，就像五彩繽紛的棒棒糖，總是最耀眼的存在', 
     advantage: '流暢的表達能力、善於說服他人，引導交談氛圍，強烈好奇心與熱情', 
     warning: '表現欲、誇大事實、行事難以規範且不擅長專注處理事務',
+    jobParam: '?col=ab&d0=220100,220200,230103,270105,120400,120215&page=1&sort=da desc&tt=2',
   },
   {
     number: '3', 
@@ -157,6 +114,7 @@ const testResultJson = reactive ([
     feature: '老少咸宜的水果軟糖，有誰不愛? 就像隨和溫暖的你，讓周圍朋友經常感受到你的貼心之處', 
     advantage: '溫和好相處，樂於付出幫助他人，沉穩隨和且具有高度耐心與自制力', 
     warning: '行事被動、安靜較無主見，面對突如其來變化較難馬上適應。',
+    jobParam: '?col=ab&d0=100200,100302,100304,100306,100308,100311,100301,120300,220400&page=1&sort=da desc&tt=2',
   },
   {
     number: '4', 
@@ -166,6 +124,7 @@ const testResultJson = reactive ([
     feature: '追求完美專業的你，不眠不休也要顧到每一個小細節，咖啡硬糖幫你提神，也跟你的肝一樣硬', 
     advantage: '注重細節的完美主義，遵循規範與程序，辦事精準、善於規劃。', 
     warning: '容易鑽牛角尖，過度追求瑣碎細節的執著，不小心就會造成拖延',
+    jobParam: '?d0=110200,110300,110100,160100&page=1&tt=2',
   },
   {
     number: '5', 
@@ -175,6 +134,7 @@ const testResultJson = reactive ([
     feature: '無論任何場合，你是眾人最關注的焦點，外放直接的溝通方式，像吃到跳跳糖，給人最直接的感官刺激', 
     advantage: '外放熱情、精明具有觀察力、有著對事物本質的追求', 
     warning: '叛逆、愛辯論、難以折服，因為喜歡質疑容易引起他人不滿',
+    jobParam: '?d0=130100,220100&page=1&tt=2',
   },
   {
     number: '6', 
@@ -184,6 +144,7 @@ const testResultJson = reactive ([
     feature: '面對任何事總能理性分析，讓人折服於你解決問題的能力，剛正不阿的你就像甘草糖一樣，糖果界的大魔王', 
     advantage: '理性冷靜、注重事實思考，具有強大的解決問題能力', 
     warning: '有極高的行事準則，以事實為重，難以同理他人情緒行為。',
+    jobParam: '?d0=250100,250200,250400,150200,150100,140200,140100,140300,140400,140500&page=1&tt=2',
   },
   {
     number: '7', 
@@ -193,6 +154,7 @@ const testResultJson = reactive ([
     feature: '深受歡迎的巧克力，如同討人喜歡的你，善於社交又體貼他人，大家都搶著跟你當朋友', 
     advantage: '隨心感性富有靈動的創造力，善於交際，充滿魅力', 
     warning: '情緒感知強、容易過度猜測或解讀他人情緒，遭受社會壓力',
+    jobParam: '?d0=220100,220300,250500&page=1&tt=2',
   },
   {
     number: '8', 
@@ -202,6 +164,7 @@ const testResultJson = reactive ([
     feature: '低調不張揚，只在暗處觀察、默默計畫的你，其實才是真高手！不像其他華麗糖果，你是必要時才出手的喉糖', 
     advantage: '情緒覺察能力強、沉靜有遠見，善於策略與謀劃', 
     warning: '內耗嚴重、過度勞累，容易隱藏負面情緒積累成疾',
+    jobParam: '?col=da&d0=130200,130300,230100,200401,200404&page=1&sort=da desc&tt=2',
   },
   {
     number: '9', 
@@ -211,6 +174,7 @@ const testResultJson = reactive ([
     feature: '懂得看場合調整定位，如同層層風味的變色糖，能在新環境或新任務中成為轉換不同角色。', 
     advantage: '具備高度彈性與適應力，在團隊中經常擔任救火隊，缺什麼補你上去都沒問題', 
     warning: '凡事保留餘地、善變而優柔寡斷易錯過時機',
+    jobParam: '?col=da&page=1&sort=da desc&tt=4&wk=1,2,8',
   },
 ])
 const quizAgain = () => {
@@ -237,14 +201,21 @@ onMounted(() => {
   // });
 
   //接職缺api
-  // axios.get('http://192.168.1.234/eventapi/tool/api_get_job.asp?d0=180210')
-  // .then(res => {
-  //   console.log(res);
-  //   jobList.value = res
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // });
+  let param = quizResult[0].jobParam
+  axios.get('http://192.168.1.234/eventapi/tool/api_get_job.asp' + param)
+  .then(res => {
+    jobList.value = res.data.splice(0, 4)
+    for (let i = 0; i < jobList.value.length; i++) {
+      let salaryNum = jobList.value[i].salary.split(' ')[1].split('~')
+      let salaryUnit = jobList.value[i].salary.split(' ')[0]
+      jobList.value[i].salary = salaryNum[0] === salaryNum[1] ? salaryUnit + salaryNum[0] + '元': 
+          salaryNum[1] == 0 ? salaryUnit + salaryNum[0] + '元': 
+          jobList.value[i].salary + '元'
+    }
+  })
+  .catch(error => {
+    console.log(error);
+  });
 })
 
 </script>
