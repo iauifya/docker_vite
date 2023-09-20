@@ -12,14 +12,8 @@
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/activity">活動說明</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/quiz">測你的甜</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/jobrecommend">職缺強打推薦</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/work">打工前停看聽</router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/working">打工前停看聽</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/winner">得獎公告</router-link></li>
-                    <!-- <router-link class="nav-link" to="/home" ><li class="nav-item d-flex align-items-center">首頁</li></router-link>
-                    <router-link class="nav-link" to="/activity" >活動說明</router-link>
-                    <router-link class="nav-link" to="/quiz" >測你的甜</router-link>
-                    <router-link class="nav-link" to="/jobrecommend" >職缺強打推薦</router-link>
-                    <router-link class="nav-link" to="/work" >打工前停看聽</router-link>
-                    <router-link class="nav-link" to="/winner" >得獎公告</router-link> -->
                 </ul>
             </div>
         </div>

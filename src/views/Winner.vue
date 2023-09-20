@@ -10,48 +10,8 @@
                             <figure class="profile-pic">
                                 <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
                             </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
-                        </div>
-                        <div class="item d-flex flex-column align-items-center">
-                            <span class="date">10/31</span>
-                            <figure class="profile-pic">
-                                <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
-                            </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
-                        </div>
-                        <div class="item d-flex flex-column align-items-center">
-                            <span class="date">10/31</span>
-                            <figure class="profile-pic">
-                                <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
-                            </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
-                        </div>
-                        <div class="item d-flex flex-column align-items-center">
-                            <span class="date">10/31</span>
-                            <figure class="profile-pic">
-                                <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
-                            </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
-                        </div>
-                        <div class="item d-flex flex-column align-items-center">
-                            <span class="date">10/31</span>
-                            <figure class="profile-pic">
-                                <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
-                            </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
-                        </div>
-                        <div class="item d-flex flex-column align-items-center">
-                            <span class="date">10/31</span>
-                            <figure class="profile-pic">
-                                <img src="@/assets/images/award/winner-sample.svg" alt="得獎者" width="167" height="167" decoding="async" loading="lazy">
-                            </figure>
-                            <span class="name">謝Ｏ柔</span>
-                            <span class="tel">0965-OOO-235</span>
+                            <span class="name">得獎者</span>
+                            <span class="tel">敬請期待</span>
                         </div>
                     </div>
                     <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
@@ -99,7 +59,9 @@
 
 <script setup>
 import {  getAll } from "@/composition-api/index";
-import { ref,watchEffect, computed,onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import Loading from "@/components/Loading.vue";
+
 //import { loginCertificationFn} from '@/composition-api/index';
 // import TheWelcome from '../components/TheWelcome.vue'
 // import { postRSVCreate} from '@/composition-api/index';
@@ -116,38 +78,43 @@ import { ref,watchEffect, computed,onMounted } from 'vue';
     // const totalrecord = ref(0);
     // const currentPage = ref(1);
     // const page = ref(1);
-
-    // const pagesToShow = 5; 
-
-    // const paginationData = computed(() => {
-    //   const startIndex = (currentPage.value - 1) 
-    //   const endIndex = startIndex + page.value;
-    //   return dataList.value.slice(startIndex, endIndex);
-    // });
+    // const loading = ref(false);
 
     // const pages = computed(() => {
-    //   const totalPages = totalpage.value;
-    //   const startPage = Math.max(1, currentPage.value - Math.floor(pagesToShow / 2));
-    //   const endPage = Math.min(totalPages, startPage + pagesToShow - 1);
-    //   const pageButtons = [];
-    //   for (let i = startPage; i <= endPage; i++) {
-    //     pageButtons.push(i);
-    //   }
-    //   return pageButtons;
+    //     let pagesToShow = 5;  
+
+    //     const mobilewidth = window.innerWidth;
+    //     if (mobilewidth < 600) {
+    //         pagesToShow = 3;
+    //     }
+
+    //     const totalPages = totalpage.value;
+    //     const startPage = Math.max(1, currentPage.value - Math.floor(pagesToShow / 2));
+    //     const endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+    //     const pageButtons = [];
+    //     for (let i = startPage; i <= endPage; i++) {
+    //         pageButtons.push(i);
+    //     }
+    //     return pageButtons;
     // });
+
+    
 
     // const getAllData = async () => {
     //   try {
+    //     loading.value = true;
     //     const data = await getAll({
-    //       pageshow: 50,
+    //       pageshow: 16,
     //       page:currentPage.value 
     //     });
-
     //     dataList.value = data.corpList.data.dataList;
     //     totalpage.value = data.corpList.data.totalpage;
     //     totalrecord.value = data.corpList.data.totalrecord;
+        
     //   } catch (error) {
     //     console.error(error);
+    //   } finally {
+    //     loading.value = false;
     //   }
     // };
 
@@ -158,10 +125,24 @@ import { ref,watchEffect, computed,onMounted } from 'vue';
     //   }
     // };
 
+
+    // const prePage=((page)=>{
+    //     if(currentPage.value >1 ){
+    //         currentPage.value --
+    //         getAllData()
+    //     }
+
+    // })
+    // const nextPage=((page)=>{
+    //     if(currentPage.value < totalpage.value) {
+    //         currentPage.value++
+    //         getAllData();
+    //     }
+    // })
+    
     
     // onMounted(() => {
     //   getAllData();
     // });
 
 </script>
-

@@ -9,7 +9,9 @@ import './assets/js/error.js'
 import "./assets/css/main.min.css";
 import "./assets/css/questions.min.css";
 import "./assets/css/testResult.min.css";
-import "./assets/css/award.min.css"
+import "./assets/css/award.min.css";
+import "./assets/css/partTime.min.css"
+
 
 
 const app = createApp(App)
