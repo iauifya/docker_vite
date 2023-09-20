@@ -1,16 +1,19 @@
 <%Response.Buffer = true:Response.CharSet = "UTF-8":Session.CodePage = 65001%>
 <%
-		'取得當下網址'
-				SEOTitle = "嗑糖!測出你的糖果類型找最適合的兼職打工| 1111人力銀行"
-				SEOKeywords = "打工,歐趴糖,人格測驗,找工作,1111打工,找打工,高薪打工"
-				SEODescription = "來1111找最甜的打工機會！30秒馬上測出你是哪種糖果角色，找到適合的打工方向，零用錢賺飽飽！完成測驗即享有LINE POINTS 25抽獎資格，名額有限快來參加！"
-				SEOUrl = "https://event.1111.com.tw/event23/candyPT"
+	'取得當下網址'
 
+	SEOTitle = "嗑糖!測出你的糖果類型找最適合的兼職打工| 1111人力銀行"
+	SEOKeywords = "打工,歐趴糖,人格測驗,找工作,1111打工,找打工,高薪打工"
+	SEODescription = "來1111找最甜的打工機會！30秒馬上測出你是哪種糖果角色，找到適合的打工方向，零用錢賺飽飽！完成測驗即享有LINE POINTS 25抽獎資格，名額有限快來參加！"
+	SEOUrl = "https://event.1111.com.tw/event23/candyPT"
+  SEOShareImg = "https://event.1111.com.tw/event23/candyPT/og.png"
+
+  SEOCompany = "1111⼈⼒銀⾏ | 全球華⼈股份有限公司 | www.1111.com.tw "
+  SEOCopyright = "1111⼈⼒銀⾏ | 全球華⼈股份有限公司版權所有© 1111 Job Bank All Rights Reserved. "
+  SEOAuthor = "1111⼈⼒銀⾏ | 全球華⼈股份有限公司"
 %>
 
-<title>
-    <%=SEOTitle%>
-</title>
+<title><%=SEOTitle%></title>
 <link rel="canonical" href="<%=SEOUrl%>" />
 <meta name="title" content="<%=SEOTitle%>"> 
 <meta name="keywords" content="<%=SEOKeywords%>">
@@ -20,11 +23,18 @@
 <meta property="og:description" content="<%=SEODescription%>">
 <meta property="og:keywords" content="<%=SEOKeywords%>">
 <meta property="og:url" content="<%=SEOUrl%>">
-<meta name="twitter:title" content="<%=SEOTitle %>">
+<meta property="og:image" content="<%=SEOShareImg%>">
+<meta name="twitter:title" content="<%=SEOTitle%>">
 <meta name="twitter:description" content="<%=SEODescription%>">
 <meta name="twitter:keywords" content="<%=SEOKeywords%>">
-<meta name="twitter:url" content="<%=SEOUrl%>" />
-<meta property="og:image" content="https://event.1111.com.tw/event23/candyPT/og.png"/>
+<meta name="twitter:url" content="<%=SEOUrl%>">
+<meta name="twitter:image:src" content="<%=SEOShareImg%>">
+<meta name="company" content="<%=SEOCompany%>">
+<meta name="copyright" content="<%=SEOCopyright%>">
+<meta name="author" content="<%=SEOAuthor%>">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+
 <script  type="application/ld+json">
 	[
 			{
@@ -35,7 +45,7 @@
 				"description": "<%=SEODescription%>",
 				"potentialAction": {
 						"@type": "SearchAction",
-						"target": "<%=SEOUrl%>",
+						"target": "https://event.1111.com.tw/event22/22yAdmissionSystem/result?years=111&typeRef=1&schoolType=1&seachType=2&ticketNum={search_term_string}",
 						"query-input": "required name=search_term_string"
 				}
 		},
