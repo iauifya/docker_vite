@@ -1,7 +1,9 @@
 // mixins
 @import '../mixins/breakpoint';
 @import '../mixins/color';
-
+html, body {
+  // height: 100vh;
+}
 // 進度條 icon
 .progress-icon {
   position: relative;
@@ -81,6 +83,7 @@
 .questions-block {
   display: flex;
   width: 100%;
+  min-height: calc(100vh - 131px);
   // 移除全部 btn focus
   .btn:focus{
     box-shadow: unset;
