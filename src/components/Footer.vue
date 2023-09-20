@@ -15,17 +15,32 @@
 <script setup>
 
 
-const copyURL =()=>{
+const copyURL =()=> {
+  const URL = window.location.href;
+  if(location.protocol === "http:"){
+      const textarea = document.createElement('textarea');
+      textarea.value = URL;
+      document.body.appendChild(textarea);
+
+      textarea.select();
+      document.execCommand('copy');
+
+      document.body.removeChild(textarea);
+
+      alert(`已複製連結：${URL}`)
+
+  }else{
     if(!navigator.clipboard){
       alert('你的瀏覽器不支援');
       return;
     }
-    const URL = location.href
-    navigator.clipboard.writeText(URL).then(()=>{
-     alert(`已複製連結：${URL}`);
-    }).catch((err)=>{
-    });
-  }
+      navigator.clipboard.writeText(URL).then(()=>{
+      alert(`已複製連結：${URL}`);
+      }).catch((err)=>{
+      });
+  };
+}
+
 
 const scrollToTop = () => {
   window.scrollTo({
