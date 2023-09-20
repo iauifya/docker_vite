@@ -18,7 +18,7 @@ const server = new AxiosApi(request);
 export const TalentNo = () => server.get(`${domain.value}/eventAPI/tool/api_check_talentNo.asp`).isLoading(false).go();
 
 // 搜尋職缺職務
-export const Job = () => server.get(`${domain.value}/eventAPI/tool/api_get_job.asp`).go();
+export const Job = (param) => server.get(`${domain.value}/eventAPI/tool/api_get_job.asp`, param).go();
 // // 搜尋公司
 export const Corp = () => server.get(`${domain.value}/eventAPI/tool/api_get_corp.asp`).go();
 

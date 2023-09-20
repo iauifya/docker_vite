@@ -28,69 +28,24 @@
                     <div class="recommend-card">
                         <h2 class="d-flex align-items-center justify-content-center"><img src="@/assets/images/result/icon-recommend-2.svg" alt="職缺強打推薦" width="43" height="35" decoding="async">職缺強打推薦</h2>
                         <div class="card-jobs my-3 my-sm-2 my-lg-3">
-                            <div class="item">
+                            <div v-for="(item, index) in jobList" :key="index" class="item">
                                 <div class="d-flex align-items-center flex-wrap">
-                                    <h3><a href="#" target="_blank" class="d-block">【亞馬遜Amazon】電商實習生 (兼職一年期、轉正機會) Amazon Project Assistant Intern（Part-time） - 高雄市</a></h3>
-                                    <span class="salary w-100 text-xs-end">時薪 180元以上</span>
+                                    <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
+                                    <span class="salary w-100 text-xs-end">{{item.salary}}</span>
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
+                                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-end justify-content-sm-between align-items-end">
                                     <div class="job-info d-flex flex-column">
-                                        <span class="company">飛輪電商有限公司</span>
-                                        <span class="area">高雄市新興區</span>
+                                        <span class="company">{{item.organs_organ}}</span>
+                                        <span class="area">{{item.workcity.split('_')[1]}}</span>
                                     </div>
                                     <div class="btn-view-job">
-                                        <a href="#" target="_blank" class="d-block">查看職缺</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <h3><a href="#" target="_blank" class="d-block">[Hotel dùa]‘etage15西餐廳全時兼職夥伴#ㄧ段班8.5小時</a></h3>
-                                    <span class="salary w-100 text-xs-end">時薪 180元</span>
-                                </div>
-                                <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                                    <div class="job-info d-flex flex-column">
-                                        <span class="company">都會生活開發股份有限公司</span>
-                                        <span class="area">高雄市新興區</span>
-                                    </div>
-                                    <div class="btn-view-job">
-                                        <a href="#" target="_blank" class="d-block">查看職缺</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <h3><a href="#" target="_blank" class="d-block">台北射箭兼職助教</a></h3>
-                                    <span class="salary w-100 text-xs-end">時薪 180元以上</span>
-                                </div>
-                                <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                                    <div class="job-info d-flex flex-column">
-                                        <span class="company">一起玩有限公司(覺觀射藝)</span>
-                                        <span class="area">台北市內湖區</span>
-                                    </div>
-                                    <div class="btn-view-job">
-                                        <a href="#" target="_blank" class="d-block">查看職缺</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <h3><a href="#" target="_blank" class="d-block">拉亞-中壢兼職【時薪最高可達$180】彈性排班</a></h3>
-                                    <span class="salary w-100 text-xs-end">時薪 176~180元</span>
-                                </div>
-                                <div class="d-flex flex-wrap justify-content-end justify-content-sm-between align-items-end">
-                                    <div class="job-info d-flex flex-column">
-                                        <span class="company">商邦餐飲有限公司</span>
-                                        <span class="area">桃園市中壢區</span>
-                                    </div>
-                                    <div class="btn-view-job">
-                                        <a href="#" target="_blank" class="d-block">查看職缺</a>
+                                        <a :href="item.link" target="_blank" class="d-block">查看職缺</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-view-more pt-2">
-                            <a href="#" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
+                            <a href="https://1111.com.tw/216048/" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
                         </div>
                     </div>
                 </div>
@@ -102,12 +57,17 @@
 </template>
 
 <script setup>
+import axios from "axios";
+import { ref, onMounted } from 'vue'
 import { loginCertificationFn} from '@/composition-api/index'
 import { useTalentNO } from '@/composable/useTalentNO.js'
 import { useRouter, useRoute } from "vue-router"
+import { Job } from "@/api/apiAll/shared.js";
 
 const router = useRouter()
 const talentNO = useTalentNO()
+
+const jobList = ref([])
 
 const login = ()=>{
     if(!talentNO){
@@ -115,8 +75,32 @@ const login = ()=>{
     }else{
         router.push('/quiz')
     }
-    
-    
 }
+
+const param = ref({
+    oat: '1, 512', 
+    col: 'ab', 
+    da: '14', 
+    page: '1', 
+    sort: 'da desc', 
+    tt: '2', 
+    wk: '1,64,2,8'
+})
+
+Job(param.value)
+  .then(res => {
+    jobList.value = res.data?.splice(0, 4)
+    for (let i = 0; i < jobList.value.length; i++) {
+      let salaryNum = jobList.value[i].salary.split(' ')[1].split('~')
+      let salaryUnit = jobList.value[i].salary.split(' ')[0]
+      jobList.value[i].salary = salaryNum[0] === salaryNum[1] ? salaryUnit + salaryNum[0] + '元': 
+          salaryNum[1] == 0 ? salaryUnit + salaryNum[0] + '元': 
+          jobList.value[i].salary + '元'
+    }
+    console.log(jobList.value)
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 </script>
