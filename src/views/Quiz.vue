@@ -64,6 +64,7 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref,reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 import { loginCertificationFn} from '@/composition-api/index'
@@ -178,7 +179,7 @@ const questions = reactive([
 const answers = reactive([])
 
 const nextQuestion = ()=>{
-    if(currentAnswer){
+    if(currentAnswer.value){
         // answers.push({questionId: currentQuestionIndex.value + 1, answer: currentAnswer.value})
         
         answers.push(currentAnswer.value)
@@ -188,7 +189,7 @@ const nextQuestion = ()=>{
             currentQuestionIndex.value++;
             currentAnswer.value = '';
             const formCheckElements = document.querySelectorAll('.form-check');
-            formCheckElements.forEach(function(formCheck) {
+            formCheckElements.forEach(formCheck => {
                 // 將當前點擊的元素移除 'active' 類別
                 formCheck.classList.remove('active');
               });
@@ -196,6 +197,8 @@ const nextQuestion = ()=>{
             // 提交答案，打API將答案送出去
             console.log('提交答案', answers);
             
+            console.log(talentNO)
+
             // let result = answers.reduce((obj, item) => {
             //   obj[item] = obj[item] ? obj[item] + 1 : 1;
             //   return obj;
@@ -212,44 +215,74 @@ const nextQuestion = ()=>{
                 result[item]++; // 對出現的數字進行記數
             });
 
-            console.log(result);
+            //console.log(result);
             const answerNum = Object.values(result)
             console.log(answerNum)
             
             const finalResult = calcScore(answerNum)
             console.log(finalResult)
-            router.push('/jobrecommend')
-            // axios.post('http://localhost:10000/posts/', {
-            //   talentNo: talentNO.value,
-            //   quizResult: finalResult
-            // finalTimeRecode: 
-            // })
-            // .then(res => {
-            //   console.log(res.data);
-            // router.push('/jobrecommend')
-            // });
+            //router.push('/jobrecommend')
+
+            //轉成form data格式
+            const form = new FormData()
+            //form.append('name', name.value)
+            form.append('talentNo', talentNO)
+            form.append('answerArray', answers)
+            form.append('answer', finalResult)
+
+            //api url 正式站/測試站
+            let url = '';
+              if(location.host === 'event.1111.com.tw'){
+                url = 'https://event.1111.com.tw/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer'
+              } else if(location.host === '192.168.1.234'){
+                url = 'http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer'
+              } else{
+                url = 'http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer' //上正式前要在換正式
+            }
+
+            const sendQuiz = (payload)=> axios.post(url,
+              payload
+            )
+            .then(res => {
+              console.log(res);
+              router.push('/jobrecommend')
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+            sendQuiz(form)
         }
+    }else{
+      alert('請選一個答案唷~')
     }
 }
 
 
 
 onMounted(() => {
-  if(!talentNO){
-    loginCertificationFn()
-  }
-  document.addEventListener('DOMContentLoaded', ()=> {
+  // if(!talentNO){
+  //   loginCertificationFn()
+  // }
     const formCheckElements = document.querySelectorAll('.form-check');
-    formCheckElements.forEach(function(formCheck) {
-      formCheck.addEventListener('click', ()=> {
-        // 移除所有元素的 'active' 類別
-        formCheckElements.forEach((element)=> {
-          element.classList.remove('active');
+    formCheckElements.forEach(formCheck => {
+          formCheck.classList.remove('active');
         });
+    formCheckElements.forEach(formCheck => {
+      formCheck.addEventListener('click', ()=> {
         // 將當前點擊的元素添加 'active' 類別
         formCheck.classList.add('active');
       });
     });
-  });
+    // formCheckElements.forEach((formCheck) => {
+    //   formCheck.addEventListener('click', ()=> {
+    //     //移除所有元素的 'active' 類別
+    //     formCheckElements.forEach((element)=> {
+    //       element.classList.remove('active');
+    //     });
+    //     // 將當前點擊的元素添加 'active' 類別
+    //     formCheck.classList.add('active');
+    //   });
+    // });
 })
 </script>
