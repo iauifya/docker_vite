@@ -4,34 +4,39 @@
       <div class="container-inner d-flex align-items-start align-items-lg-stretch flex-wrap">
         <div class="result d-flex">
           <div class="result-card d-flex flex-column">
-            <h1 class="name d-flex align-items-center justify-content-center justify-content-lg-start"><span class="d-inline-block text-center">薄荷涼糖</span></h1>
-            <div class="d-flex flex-wrap h-100">
-                <div class="candy-img">
-                    <img src="@/assets/images/result/candy01.svg" alt="薄荷涼糖" width="146" height="146" decoding="async" loading="lazy">
-                    <!-- <img src="assets/images/result/candy02.webp" alt="棒棒糖" width="146" height="231" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy03.webp" alt="水果軟糖" width="122" height="144" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy04.webp" alt="咖啡硬糖" width="145" height="146" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy05.webp" alt="跳跳糖" width="146" height="135" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy06.webp" alt="甘草糖" width="146" height="146" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy07.webp" alt="巧克力" width="143" height="126" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy08.webp" alt="喉糖" width="157" height="120" decoding="async" loading="lazy">
-                    <img src="assets/images/result/candy09.webp" alt="變色糖" width="146" height="142" decoding="async" loading="lazy"> -->
-                    <div class="jobs">
-                        <h3>推薦職務：</h3>
-                        <p><a href="#" target="_blank">儲備幹部</a>、<a href="#" target="_blank">業務類</a></p>
-                    </div>
+            
+            <h1 class="name d-flex align-items-center justify-content-center justify-content-lg-start"><span class="d-inline-block text-center">{{ quizResultOne.title }}</span></h1>
+            <div class="d-flex flex-wrap h-100" v-if="!Object.keys(quizResultOne).length > 0">
+                <img :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 0 auto" >
+              </div>
+            <div class="d-flex flex-wrap h-100" v-else>
+              
+              <div class="candy-img">
+                <img :src="quizResultOne.img" alt="薄荷涼糖" width="146" height="146" decoding="async" loading="lazy">
+                <!-- <img src="assets/images/result/candy02.webp" alt="棒棒糖" width="146" height="231" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy03.webp" alt="水果軟糖" width="122" height="144" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy04.webp" alt="咖啡硬糖" width="145" height="146" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy05.webp" alt="跳跳糖" width="146" height="135" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy06.webp" alt="甘草糖" width="146" height="146" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy07.webp" alt="巧克力" width="143" height="126" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy08.webp" alt="喉糖" width="157" height="120" decoding="async" loading="lazy">
+                <img src="assets/images/result/candy09.webp" alt="變色糖" width="146" height="142" decoding="async" loading="lazy"> -->
+                <div class="jobs">
+                    <h3>推薦職務：</h3>
+                    <p>{{ quizResultOne.recoJob }}</p>
                 </div>
-                <div class="candy-info">
-                    <h3>性格概述</h3>
-                    <p>不畏挑戰的你，一旦設定目標便會全力衝刺，如同薄荷涼糖的嗆涼，是股不容忽視的強大氣場</p>
-                    <h3>優點</h3>
-                    <p>主動積極、具強烈的目標執行力，分析敏銳，決斷的決策能力。</p>
-                    <h3>需多留意</h3>
-                    <p>可能發展為自大或控制欲強，難以同理他人情緒行為。</p>
-                </div>
-                <div class="btn-test-again text-center w-100 mt-auto">
-                    <a @click="quizAgain">再測一次</a>
-                </div>
+              </div>
+              <div class="candy-info">
+                  <h3>性格概述</h3>
+                  <p>{{ quizResultOne.feature }}</p>
+                  <h3>優點</h3>
+                  <p>{{ quizResultOne.advantage }}</p>
+                  <h3>需多留意</h3>
+                  <p>{{ quizResultOne.warning }}</p>
+              </div>
+              <div class="btn-test-again text-center w-100 mt-auto">
+                  <button type="button" @click="quizAgain">再測一次</button>
+              </div>
             </div>
         </div>
       </div>
@@ -81,14 +86,28 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 import { useTalentNO } from '@/composable/useTalentNO.js'
 //import { loginCertificationFn} from '@/composition-api/index';
+
+import one from "@/assets/images/result/candy01.svg";
+import two from "@/assets/images/result/candy02.svg";
+import three from "@/assets/images/result/candy03.svg";
+import four from "@/assets/images/result/candy04.svg";
+import five from "@/assets/images/result/candy05.svg";
+import six from "@/assets/images/result/candy06.svg";
+import seven from "@/assets/images/result/candy07.svg";
+import eight from "@/assets/images/result/candy08.svg";
+import nine from "@/assets/images/result/candy09.svg";
+
+import loading from "@/assets/images/Spin-1s-200px.svg";
+
 const router = useRouter()
 const talentNO = useTalentNO()
 
 const jobList = ref([])
-const quizResult = reactive ([
+let quizResult = reactive ([
   {
     number: '1', 
     title: '薄荷涼糖', 
+    img: one,
     recoJob: '儲備幹部、業務類', 
     recoJobHref: 'https://1111.com.tw/215998/', 
     feature: '不畏挑戰的你，一旦設定目標便會全力衝刺，如同薄荷涼糖的嗆涼，是股不容忽視的強大氣場', 
@@ -99,6 +118,7 @@ const quizResult = reactive ([
   {
     number: '2', 
     title: '棒棒糖', 
+    img: two,
     recoJob: '服務業、時尚產業、演藝產業', 
     recoJobHref: 'https://1111.com.tw/215999/', 
     feature: '外向熱情、歡樂一百點是你的獨特魅力，就像五彩繽紛的棒棒糖，總是最耀眼的存在', 
@@ -109,6 +129,7 @@ const quizResult = reactive ([
   {
     number: '3', 
     title: '水果軟糖', 
+    img: three,
     recoJob: '行政文書、人資、客服', 
     recoJobHref: 'https://1111.com.tw/216000/', 
     feature: '老少咸宜的水果軟糖，有誰不愛? 就像隨和溫暖的你，讓周圍朋友經常感受到你的貼心之處', 
@@ -119,6 +140,7 @@ const quizResult = reactive ([
   {
     number: '4', 
     title: '咖啡硬糖', 
+    img: four,
     recoJob: '會計類、工程機械類', 
     recoJobHref: 'https://1111.com.tw/216001/', 
     feature: '追求完美專業的你，不眠不休也要顧到每一個小細節，咖啡硬糖幫你提神，也跟你的肝一樣硬', 
@@ -129,6 +151,7 @@ const quizResult = reactive ([
   {
     number: '5', 
     title: '跳跳糖', 
+    img: five,
     recoJob: '銷售、廣告類', 
     recoJobHref: 'https://1111.com.tw/216002/', 
     feature: '無論任何場合，你是眾人最關注的焦點，外放直接的溝通方式，像吃到跳跳糖，給人最直接的感官刺激', 
@@ -139,6 +162,7 @@ const quizResult = reactive ([
   {
     number: '6', 
     title: '甘草糖', 
+    img: six,
     recoJob: '科研、工程類', 
     recoJobHref: 'https://1111.com.tw/216003/', 
     feature: '面對任何事總能理性分析，讓人折服於你解決問題的能力，剛正不阿的你就像甘草糖一樣，糖果界的大魔王', 
@@ -149,6 +173,7 @@ const quizResult = reactive ([
   {
     number: '7', 
     title: '巧克力', 
+    img: seven,
     recoJob: '媒體、教育類', 
     recoJobHref: 'https://1111.com.tw/216004/', 
     feature: '深受歡迎的巧克力，如同討人喜歡的你，善於社交又體貼他人，大家都搶著跟你當朋友', 
@@ -159,6 +184,7 @@ const quizResult = reactive ([
   {
     number: '8', 
     title: '喉糖', 
+    img: eight,
     recoJob: '醫療類、企劃設計類', 
     recoJobHref: 'https://1111.com.tw/216005/', 
     feature: '低調不張揚，只在暗處觀察、默默計畫的你，其實才是真高手！不像其他華麗糖果，你是必要時才出手的喉糖', 
@@ -169,6 +195,7 @@ const quizResult = reactive ([
   {
     number: '9', 
     title: '變色糖', 
+    img: nine,
     recoJob: '任何職務', 
     recoJobHref: 'https://1111.com.tw/216006/', 
     feature: '懂得看場合調整定位，如同層層風味的變色糖，能在新環境或新任務中成為轉換不同角色。', 
@@ -177,6 +204,9 @@ const quizResult = reactive ([
     jobParam: '?col=da&page=1&sort=da desc&tt=4&wk=1,2,8',
   },
 ])
+
+
+
 const quizAgain = () => {
   if(!talentNO){
     router.push('/jobrecommendlogin')
@@ -184,24 +214,59 @@ const quizAgain = () => {
   router.push('/quiz')
 }
 
-onMounted(() => {
+let quizResultOne = ref([])
+
+// const fetchResult = ()=> {
+//     axios.get('http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&pageshow=1&backend=0&sdate&edate&sid&skey&order_by&status')
+//       .then(res => {
+//         console.log(res.data.dataList[res.data.dataList.length - 1].answer);
+//         quizResultOne = quizResult.filter((item)=>{
+//           return item.number === res.data.dataList[res.data.dataList.length - 1].answer
+//         })
+//         console.log(quizResultOne)
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       });
+//   }
+
+//api url 正式站/測試站
+let url = '';
+  if(location.host === 'event.1111.com.tw'){
+    url = `https://event.1111.com.tw/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}`
+  } else if(location.host === '192.168.1.234'){
+    url = `http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}`
+  } else{
+    url = `http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}` //上正式前要在換正式
+}
+
+//測驗結果對應
+async function fetchResult() {
+  try {
+    const res = await axios.get(url);
+    console.log(res.data.dataList[res.data.dataList.length - 1].answer);
+    // quizResultOne.splice(0,quizResultOne.length,...quizResult.filter((item) => {
+    //   return item.number === res.data.dataList[res.data.dataList.length - 1].answer;
+    // }))
+    quizResultOne.value= quizResult.find((item) => {
+      return item.number === res.data.dataList[res.data.dataList.length - 1].answer;
+    })
+    console.log(quizResultOne);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+onMounted(async() => {
+  await fetchResult()
+  console.log(quizResultOne.value)
+  console.log(quizResultOne.value.length)
+
   if(!talentNO){
     router.replace('/jobrecommendlogin')
   }
-  //測驗結果對應
-  // axios.get('')
-  // .then(res => {
-  //   console.log(res);
-  //   quizResult = quizResult.filter((item)=>{
-  //     item.number = res.dataList.id
-  //   })
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // });
-
   //接職缺api
-  let param = quizResult[0].jobParam
+  let param = quizResultOne.value.jobParam
   axios.get('http://192.168.1.234/eventapi/tool/api_get_job.asp' + param)
   .then(res => {
     jobList.value = res.data.splice(0, 4)
@@ -219,4 +284,3 @@ onMounted(() => {
 })
 
 </script>
-

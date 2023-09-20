@@ -14,7 +14,7 @@
                                 <img src="@/assets/images/result/not-logged-img.svg" alt="你是哪種糖?" width="597" height="263" decoding="async" loading="lazy">
                             </div>
                             <div class="btn-test-again text-center w-100 mt-auto">
-                                <a @click="login">點我測驗</a>
+                                <button type="button" @click="login">點我測驗</button>
                             </div>
                         </div>
                     </div>
