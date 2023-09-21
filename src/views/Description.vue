@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="description_main">
     <section class="description-block">
       <article class="description-content d-flex flex-column container-inner">
         <h1>活動說明</h1>

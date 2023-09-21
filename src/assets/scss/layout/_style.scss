@@ -10,7 +10,7 @@ body {
     &::after {
         content: '';
         display: block;
-        background: url('@/assets/images/bg-element-mb.svg') 0 0 no-repeat;
+        background: url(../../assets/images/bg-element-mb.svg) 0 0 no-repeat;
         background-size: cover;
         position: absolute;
         z-index: -1;
@@ -19,7 +19,7 @@ body {
         top: 0;
         left: 0;
         @include b576 {
-            background: url('@/assets/images/bg-element-mb.svg') 0 0 no-repeat;
+            background: url(../../assets/images/bg-element.svg) 0 0 no-repeat;
         }
     }
 }

@@ -58,9 +58,9 @@
 
 
 <script setup>
-import {  getAll } from "@/composition-api/index";
-import { ref, computed, onMounted } from 'vue';
-import Loading from "@/components/Loading.vue";
+// import {  getAll } from "@/composition-api/index";
+// import { ref, computed, onMounted } from 'vue';
+// import Loading from "@/components/Loading.vue";
 
 //import { loginCertificationFn} from '@/composition-api/index';
 // import TheWelcome from '../components/TheWelcome.vue'
