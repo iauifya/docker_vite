@@ -245,24 +245,15 @@ onMounted(() => {
     loginCertificationFn()
   }
   const formCheckElements = document.querySelectorAll('.form-check');
-  formCheckElements.forEach(formCheck => {
-        formCheck.classList.remove('active');
-      });
-  formCheckElements.forEach(formCheck => {
+  formCheckElements.forEach((formCheck) => {
     formCheck.addEventListener('click', ()=> {
+      //移除所有元素的 'active' 類別
+      formCheckElements.forEach((element)=> {
+        element.classList.remove('active');
+      });
       // 將當前點擊的元素添加 'active' 類別
       formCheck.classList.add('active');
     });
   });
-  // formCheckElements.forEach((formCheck) => {
-  //   formCheck.addEventListener('click', ()=> {
-  //     //移除所有元素的 'active' 類別
-  //     formCheckElements.forEach((element)=> {
-  //       element.classList.remove('active');
-  //     });
-  //     // 將當前點擊的元素添加 'active' 類別
-  //     formCheck.classList.add('active');
-  //   });
-  // });
 })
 </script>
