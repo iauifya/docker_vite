@@ -278,12 +278,12 @@ let quizResultOne = ref([])
 
 //測驗結果對應
 let payload = { apitype: 'signup', page: 1, backend: 0, talentNo: talentNO }
-const fetchResult = ()=> {
-  QuizResult(payload)
+const fetchResult = async()=> {
+  await QuizResult(payload)
   .then(res => {
-    console.log(res.data.dataList[res.data.dataList.length - 1].answer);
+    console.log(res.data.dataList[0].answer);
     quizResultOne.value= quizResult.find((item) => {
-      return item.number === res.data.dataList[res.data.dataList.length - 1].answer;
+      return item.number === res.data.dataList[0].answer;
     })
     console.log(quizResultOne)
   })
