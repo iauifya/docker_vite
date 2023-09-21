@@ -22,11 +22,24 @@
 </template>
 
 <script setup>
- import { ref } from 'vue';
+ import { ref,onMounted } from 'vue';
  import { useRoute } from "vue-router";
 
 
  const route = useRoute();
 
+
+onMounted(()=>{
+    const navLinks = document.querySelectorAll('.nav-item')
+    const navToggler = document.querySelector('.navbar-toggler')
+    // console.log(navLinks)
+    // console.log(navToggler)
+    navLinks.forEach((navLink)=>{
+        navLink.addEventListener('click',()=> {
+            navToggler.click();
+        })
+    })
+
+})
 </script>
 
