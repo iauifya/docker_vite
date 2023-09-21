@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/home">首頁</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/activity">活動說明</router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/description">活動說明</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/quiz">測你的甜</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/jobrecommend">職缺強打推薦</router-link></li>
                   <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/working">打工前停看聽</router-link></li>

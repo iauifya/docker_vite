@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import home from '@/views/HomeView.vue'
-import activity from '@/views/Activity.vue'
+import description from '@/views/Description.vue'
 import quiz from '@/views/Quiz.vue'
 import jobrecommend from '@/views/JobRecommend.vue'
 import jobrecommendlogin from '@/views/JobRecommendLogin.vue'
@@ -29,9 +29,9 @@ const router = createRouter ({
       }
     },
     {
-      path: '/activity',
-      name: 'activity',
-      component: activity,
+      path: '/description',
+      name: 'description',
+      component: description,
       meta: {
         title: '活動說明',
       }

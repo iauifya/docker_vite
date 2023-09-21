@@ -47,24 +47,10 @@
           </div>
         </div>
     </section>
-    <div>
-      <!-- <p>進度條</p> -->
-      <!-- <img src="" alt="" :style="width: (100% / 7 * (currentQuestionIndex + 1))"> -->
-    </div>
-    <!-- <label :for="currentQuestionId">Q{{currentQuestionIndex + 1}}: {{ currentQuestion.title }}:</label>
-    <ul>
-        <li v-for="answer in currentQuestion.answer">
-           <input type="radio" :value="answer.option" v-model="currentAnswer">
-           <label :for="answer.option">{{ answer.content }}</label> 
-        </li>
-    </ul>
-    
-    <button @click="nextQuestion">{{ currentQuestionIndex === 6 ? '送出答案':'下一題' }}</button> -->
   </main>
 </template>
 
 <script setup>
-import axios from "axios";
 import { ref,reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 import { loginCertificationFn} from '@/composition-api/index'
@@ -74,6 +60,7 @@ import one from "@/assets/images/questions/person_01.svg";
 import two from "@/assets/images/questions/person_02.svg";
 import three from "@/assets/images/questions/person_03.svg";
 import four from "@/assets/images/questions/person_04.svg";
+import { SendQuiz } from "../api/apiAll/quiz.js";
 
 const router = useRouter();
 const talentNO = useTalentNO()
@@ -224,25 +211,18 @@ const nextQuestion = ()=>{
             //router.push('/jobrecommend')
 
             //轉成form data格式
-            const form = new FormData()
-            //form.append('name', name.value)
-            form.append('talentNo', talentNO)
-            form.append('answerArray', answers)
-            form.append('answer', finalResult)
+            // const form = new FormData()
+            // //form.append('name', name.value)
+            // form.append('talentNo', talentNO)
+            // form.append('answerArray', answers)
+            // form.append('answer', finalResult)
 
-            //api url 正式站/測試站
-            let url = '';
-              if(location.host === 'event.1111.com.tw'){
-                url = 'https://event.1111.com.tw/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer'
-              } else if(location.host === '192.168.1.234'){
-                url = 'http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer'
-              } else{
-                url = 'http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_post_signup.asp?talentNo&answerArray&answer' //上正式前要在換正式
-            }
-
-            const sendQuiz = (payload)=> axios.post(url,
-              payload
-            )
+            // const sendQuiz = (payload)=> axios.post(url,
+            //   payload
+            // )
+            console.log(answers)
+            let payload = { talentNo: talentNO, answerArray: answers.join(','), answer: finalResult }
+            SendQuiz(payload)
             .then(res => {
               console.log(res);
               router.push('/jobrecommend')
@@ -251,7 +231,7 @@ const nextQuestion = ()=>{
               console.log(error);
             });
 
-            sendQuiz(form)
+            //sendQuiz(form)
         }
     }else{
       alert('請選一個答案唷~')
@@ -261,28 +241,28 @@ const nextQuestion = ()=>{
 
 
 onMounted(() => {
-  // if(!talentNO){
-  //   loginCertificationFn()
-  // }
-    const formCheckElements = document.querySelectorAll('.form-check');
-    formCheckElements.forEach(formCheck => {
-          formCheck.classList.remove('active');
-        });
-    formCheckElements.forEach(formCheck => {
-      formCheck.addEventListener('click', ()=> {
-        // 將當前點擊的元素添加 'active' 類別
-        formCheck.classList.add('active');
+  if(!talentNO){
+    loginCertificationFn()
+  }
+  const formCheckElements = document.querySelectorAll('.form-check');
+  formCheckElements.forEach(formCheck => {
+        formCheck.classList.remove('active');
       });
+  formCheckElements.forEach(formCheck => {
+    formCheck.addEventListener('click', ()=> {
+      // 將當前點擊的元素添加 'active' 類別
+      formCheck.classList.add('active');
     });
-    // formCheckElements.forEach((formCheck) => {
-    //   formCheck.addEventListener('click', ()=> {
-    //     //移除所有元素的 'active' 類別
-    //     formCheckElements.forEach((element)=> {
-    //       element.classList.remove('active');
-    //     });
-    //     // 將當前點擊的元素添加 'active' 類別
-    //     formCheck.classList.add('active');
-    //   });
-    // });
+  });
+  // formCheckElements.forEach((formCheck) => {
+  //   formCheck.addEventListener('click', ()=> {
+  //     //移除所有元素的 'active' 類別
+  //     formCheckElements.forEach((element)=> {
+  //       element.classList.remove('active');
+  //     });
+  //     // 將當前點擊的元素添加 'active' 類別
+  //     formCheck.classList.add('active');
+  //   });
+  // });
 })
 </script>
