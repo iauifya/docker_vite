@@ -50,7 +50,7 @@
           <div class="recommend-card">
               <h2 class="d-flex align-items-center justify-content-center"><img src="@/assets/images/result/icon-recommend-1.svg" alt="適合的打工推薦" width="41" height="44" decoding="async">適合的打工推薦</h2>
               <div class="card-jobs my-3 my-sm-2 my-lg-3">
-                <!-- <template v-if="!loading"> -->
+                <template v-if="jobList.length">
                   <div v-for="(item, index) in jobList" :key="index" class="item">
                       <div class="d-flex align-items-center flex-wrap">
                           <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
@@ -66,11 +66,13 @@
                           </div>
                       </div>
                   </div>
-                <!-- </template> -->
-                <!-- <div v-if="loading">loading畫面</div> -->
+                </template>
+                <div v-if="!jobList.length">
+                  <img :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 20% auto" >
+                </div>
               </div>
               <div class="btn-view-more pt-2">
-                  <a href="#" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
+                  <a :href="`${quizResultOne.recoJobHref}`" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
               </div>
           </div>
         </div>
