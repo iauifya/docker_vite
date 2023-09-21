@@ -1,0 +1,595 @@
+// mixins
+@import '../mixins/breakpoint';
+@import '../mixins/color';
+
+body {
+  &::after {
+    background: url(../../images/index/bg-element-sm.svg) top center no-repeat;
+    background-size: 100% !important;
+    @include b1024 {
+      background: url(../../images/index/bg-element.svg) top center no-repeat;
+      background-size: auto !important;
+    }
+  }
+  background: var(--system-pink-9);
+}
+
+:root {
+  // 螢幕寬度
+  --screen-width: 375;
+
+  // bg-group 背景區 寬跟高
+  --bg-grounp-width: 489;
+  --bg-grounp-height: 438;
+
+  // screen - padding
+  --block-width: 329;
+  --block-height: 408;
+
+  // 主標題區
+  --main-group-width: 207;
+  --main-group-height: 195;
+
+  // 副標題區
+  --sub-title-width: 317;
+  --sub-title-height: 97;
+
+  // person 區域
+  --person-group-width: 120;
+  --person-group-height: 282;
+
+  // 第2個人物的寬高比
+  --person-02-width: 120;
+  --person-02-height: 282;
+
+  // bg-circle
+  --bg-circle-width: 245;
+  --bg-circle-height: 277;
+
+@include b1024 {
+  // 螢幕寬度
+  --screen-width: 1024;
+
+  // bg-group 背景區 寬跟高
+  --bg-grounp-width: 1105;
+  --bg-grounp-height: 989;
+
+  // screen - padding-內容物的寬度
+  --block-width: 1024;
+  --block-height: 767;
+
+  // 主標題區
+  --main-group-width: 370;
+  --main-group-height: 349;
+
+  // 副標題區 
+  --sub-title-width: 541;
+  --sub-title-height: 164;
+
+  // person 區域
+  --person-group-width: 523;
+  --person-group-height: 490;
+
+  // 第1個人物的寬高比
+  --person-01-width: 227;
+  --person-01-height: 478;
+
+  // 第2個人物的寬高比
+  --person-02-width: 208;
+  --person-02-height: 491;
+
+  // 第3個人物的寬高比
+  --person-03-width: 109;
+  --person-03-height: 426;
+
+  // candy 區域
+  --candy-group-width: 178;
+  --candy-group-height: 153;
+
+  // 第1個 candy red
+  --candy-01-width: 73;
+  --candy-01-height: 44;
+
+  // 第2個 candy yellow
+  --candy-02-width: 75;
+  --candy-02-height: 49;
+
+   // 第3個 candy green
+  --candy-03-width: 109;
+  --candy-03-height: 68; 
+  
+  // bg-circle
+  --bg-circle-width: 618;
+  --bg-circle-height: 722;
+}
+
+@include b1140 {
+  // 螢幕寬度
+  --screen-width: 1140;
+
+  // bg-group 背景區 寬跟高
+  --bg-grounp-width: 1231;
+  --bg-grounp-height: 1101;
+
+  // screen - padding-內容物的寬度
+  --block-width: 1140;
+  --block-height: 854;
+
+  // 主標題區
+  --main-group-width: 414;
+  --main-group-height: 389;
+
+  // 副標題區 
+  --sub-title-width: 602;
+  --sub-title-height: 183;
+
+  // person 區域
+  --person-group-width: 582;
+  --person-group-height: 546;
+
+  // 第1個人物的寬高比
+  --person-01-width: 253;
+  --person-01-height: 532;
+
+  // 第2個人物的寬高比
+  --person-02-width: 232;
+  --person-02-height: 546;
+
+  // 第3個人物的寬高比
+  --person-03-width: 121;
+  --person-03-height: 474;
+  
+  // candy 區域
+  --candy-group-width: 194;
+  --candy-group-height: 171;
+
+  // 第1個 candy red
+  --candy-01-width: 81;
+  --candy-01-height: 49;
+
+  // 第2個 candy yellow
+  --candy-02-width: 83;
+  --candy-02-height: 55;
+
+  // 第3個 candy green
+  --candy-03-width: 114;
+  --candy-03-height: 75;  
+
+  // bg-circle
+  --bg-circle-width: 688;
+  --bg-circle-height: 804;
+}
+}
+
+header {
+  position: relative;
+  z-index: 500;
+}
+.slide-float {
+  z-index: 500;
+}
+
+.activity-block {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  @include b1140 {
+    padding-top: 30px;
+  }
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    margin-top: calc((307 / var(--screen-width)) * 100%);
+    margin-left: calc((132 / var(--screen-width)) * -100%);
+    width: calc((var(--bg-circle-width) / var( --screen-width)) * 100%);
+    aspect-ratio: var(--bg-circle-width) / var(--bg-circle-height);
+    background: url(../../images/index/bg-circle-sm.svg) 0 0 no-repeat;
+    background-size: cover !important;
+    z-index: 50;
+    top: 0;
+    animation: fadeInFromLeft .8s ease-in-out;
+    @include b1024 {
+      margin-top: calc((264 / var(--screen-width)) * 100%);
+      margin-left: calc((409 / var(--screen-width)) * -100%);
+      background: url(../../images/index/bg-circle.svg) 0 0 no-repeat;
+    }
+    @include b1140 {
+      margin-top: 294px;
+      margin-left: -457px;
+    }
+  }
+  .activity-content {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    max-width: 1140px;
+  }
+
+  // 雲跟學校的背景圖
+  .bg-group {
+    position: absolute;
+    margin-top: calc(((153) / var(--screen-width)) * -100%);
+    margin-left: calc(((138) / var(--screen-width)) * 100%);
+    width: calc((var(--bg-grounp-width) / var(--screen-width)) * 100%);
+    aspect-ratio: var(--bg-grounp-width) / var(--bg-grounp-height);
+    line-height: 0;
+    z-index: 50;
+    animation: fadeInFromRight .8s ease-in-out;
+    @include b1024 {
+      margin-top: calc(((420) / var(--screen-width)) * -100%);
+      margin-left: calc(((399) / var(--screen-width)) * 100%);
+      top: 0;
+    }
+    @include b1140 {
+      margin-top: -468px;
+      margin-left: -124px;
+      width: 1231px;
+      left: 50%;
+    }
+  }
+  .img-cloud {
+      width: 100%;
+  }
+  .img-school {
+    position: absolute;
+    width: calc((293 / var(--bg-grounp-width)) * 100%);
+    height: auto;
+    top: calc((249 / var(--bg-grounp-height)) * 100%);
+    left: calc((40 / var(--bg-grounp-width)) * 100%);
+    @include b1024 {
+      width: calc((698 / var(--bg-grounp-width)) * 100%);
+      top: calc((582 / var(--bg-grounp-height)) * 100%);
+      left: calc((243 / var(--bg-grounp-width)) * 100%);      
+    }
+    @include b1140 {
+      width: calc((778 / var(--bg-grounp-width)) * 100%);
+      top: calc((649 / var(--bg-grounp-height)) * 100%);
+      left: calc((271 / var(--bg-grounp-width)) * 100%);      
+    }
+  }
+  .img-bushes {
+    display: none;
+    @include b1024 {
+      position: absolute;
+      display: inline;
+      width: calc((126 / var(--bg-grounp-width)) * 100%);
+      top: calc((710 / var(--bg-grounp-height)) * 100%);
+      left: calc((133 / var(--bg-grounp-width)) * 100%);
+    }
+    @include b1140 {
+      width: calc((141 / var(--bg-grounp-width)) * 100%);
+      top: calc((791 / var(--bg-grounp-height)) * 100%);
+      left: calc((149 / var(--bg-grounp-width)) * 100%);
+    }
+  }
+
+  // 主文字區
+  .centent-group {
+    position: relative;
+    display: flex;
+    padding: 0 16px 0 30px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 100;
+    @include b1024 {
+      padding: 0;
+    }
+  }
+// 主標
+  .main-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(((166 - 93 - 16) / var(--block-width)) * 100% );
+    margin-bottom: calc((26 / var(--block-width)) * 100%);
+    justify-content: flex-start;
+    width: calc((var(--main-group-width) / var(--block-width)) * 100%);
+    aspect-ratio: var(--main-group-width) / var(--main-group-height);
+    order: 2;
+    animation: fadeInFromLeft .8s ease-in-out;
+    @include b1024 {
+      margin-top: calc((175 / var(--block-width)) * 100% );
+      margin-left: calc((16 / var(--block-width)) * 100% );
+    }
+    @include b1140 {
+      margin-top: calc((196 / var(--block-width)) * 100% );
+      margin-left: calc((18 / var(--block-width)) * 100% );
+    }
+    span {
+      display: none;
+    }
+    p {
+      margin-bottom: 3vmin;
+      padding: 2.7vmin 0;
+      font-size: 4.3vmin;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+      color: var(--system-black);
+      @include b1024 {
+        font-size: 3.3vmin;
+      }
+      @include b1140 {
+        font-size: 32px;
+        padding: 29px 0;
+        margin-bottom: 24px;
+      }
+    }
+    button {
+      margin: 0 auto;
+      padding: .5vmin 7.6vmin;
+      font-size: 5.6vmin;
+      font-weight: 700;
+      line-height: 9vmin;
+      letter-spacing: 2.412px;
+      color: var(--system-white);
+      background: var(--system-pink-1);
+      border: .9vmin solid var(--system-pink-5);
+      border-radius: calc((50 / 16) * 1rem);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.20);;
+      z-index: 2;
+      transition: .3s;
+      animation: scale 5s linear infinite .8s;
+      @include b768 {
+        letter-spacing: 4.14px;
+      }
+      @include b1024 {
+        margin: 0 auto 0 0;
+        padding: .9vmin 5.2vmin;
+        font-size: 3.72vmin;
+        line-height: 5.2vmin;
+        border: 3px solid var(--system-pink-5);
+      }
+      @include b1140 {
+        padding: 11px 50px;
+        font-size: 36px;
+        line-height: 45px;
+        letter-spacing: 4.14px;
+        border: 4px solid var(--system-pink-5);
+      }
+      &:hover {
+        background: var(--system-pink-2);
+      }
+    }
+  }
+  // 第2標題圖
+  .sub-title {
+    margin-top: calc((22 / var(--block-width)) * 100% );
+    margin-bottom: calc((16 / var(--block-width)) * -100% );
+    width: calc((var(--sub-title-width) / var(--block-width)) * 100%);
+    aspect-ratio: var(--sub-title-width) / var(--sub-title-height);
+    align-content: center;
+    animation: fadeInFromTop .8s ease-in-out;    
+    @include b1024 {
+      position: absolute;
+      margin-top: calc((33 / var(--block-width)) * 100%);
+      width: calc((var(--sub-title-width) / var(--screen-width)) * 100%);
+      right: calc(((541 - 528) / var(--block-width)) * -100%);;
+    }
+    @include b1140 {
+      right: calc(((602 - 584) / var(--block-width)) * -100%);;
+    }
+  }
+  // 人物全組
+  .persons-group {
+    position: relative;
+    margin-top: calc(((100 - 93 - 16) / var(--block-width)) * 100%);
+    margin-bottom: calc((26 / var(--block-width)) * 100%);
+    align-content: center;
+    width: calc((var(--person-group-width) / var(--block-width)) * 100%);
+    aspect-ratio: var(--person-group-width) / var(--person-group-height);
+    line-height: 0;
+    order: 3;
+    animation: fadeInFromButtom .8s ease-in-out;
+    @include b1024 {
+      display: flex;
+      margin-top: calc((215 / var(--block-width)) * 100%);
+      margin-right: calc((32 / var(--block-width)) * 100%);
+      margin-bottom: calc((61 / var(--block-width)) * 100%);
+      align-content: flex-start;
+    }
+    @include b1140 {
+      margin-top: calc((240 / var(--block-width)) * 100%);
+      margin-right: calc((39 / var(--block-width)) * 100%);
+      margin-bottom: 68px;
+    }
+    
+    .bg-person-01 {
+      position: relative;
+      display: none;
+      width: calc((var(--person-01-width) / var(--person-group-width)) * 100%);
+      height: auto;
+      aspect-ratio: var(--person-01-width) / var(--person-01-height);
+      filter: drop-shadow(3.616954803466797px 3.616954803466797px 5.683785915374756px rgba(0, 0, 0, 0.25));
+      @include b1024 {
+        display: inline-block;
+      }
+    }
+    .bg-person-02 {
+      width: calc((var(--person-02-width) / var(--person-group-width)) * 100%);
+      height: auto;
+      aspect-ratio: var(--person-02-width) / var(--person-02-height);
+      filter: drop-shadow(3.616954803466797px 3.616954803466797px 5.683785915374756px rgba(0, 0, 0, 0.25));
+      @include b1024 {
+        margin-left: calc((30 / var(--person-group-width)) * -100%);
+      }
+      @include b1140 {
+        margin-left: calc((40 / var(--person-group-width)) * -100%);
+      }
+    }
+    .bg-person-03 {
+      display: none;
+      width: calc((var(--person-03-width) / var(--person-group-width)) * 100%);
+      height: auto;
+      aspect-ratio: var(--person-03-width) / var(--person-03-height);
+      filter: drop-shadow(3.616954803466797px 3.616954803466797px 5.683785915374756px rgba(0, 0, 0, 0.25));
+      @include b1024 {
+        display: inline-block;
+        margin-left: auto;
+      }
+    }
+  }
+  .candy-group{
+    display: none;
+    animation: opacity .8s ease-in-out;
+    @include b1024 {
+      position: absolute;
+      display: inline-block;
+      margin-top: calc((434 / var(--block-width)) * 100%);
+      margin-left: calc((299 / var(--block-width)) * 100%);
+      width: calc((var(--candy-group-width) / var(--block-width)) * 100%);
+      aspect-ratio: var(--candy-group-width) / var(--candy-group-height);
+      height: auto;
+    }
+    @include b1140 {
+      margin-top: calc((483 / var(--block-width)) * 100%);
+      margin-left: calc((332 / var(--block-width)) * 100%);
+    }
+    .bg-candy-01 {
+      display: none;
+      line-height: 0;
+      animation: rock 2s linear;
+      @include b1024 {
+        position: absolute;
+        display: inline-block;
+        margin-left: calc((79 / var(--candy-group-width)) * 100%);
+        width: calc((var(--candy-01-width) / var(--candy-group-width)) * 100%);
+        height: auto;
+        aspect-ratio: var(--candy-01-width) / var(--candy-01-height);
+      }
+      @include b1140 {
+        margin-left: calc((88 / var(--candy-group-width)) * 100%);
+      }
+    }
+    .bg-candy-02 {
+      display: none;
+      animation: reverseRock 2s linear;
+      @include b1024 {
+        position: absolute;
+        display: inline-block;
+        margin-top: calc((53 / var(--candy-group-width)) * 100%);
+        width: calc((var(--candy-02-width) / var(--candy-group-width)) * 100%);
+        aspect-ratio: var(--candy-02-width) / var(--candy-02-height);
+        height: auto;
+      }
+      @include b1140 {
+        margin-top: calc((59 / var(--candy-group-width)) * 100%);
+      }
+    }
+    .bg-candy-03 {
+      display: none;
+      animation: rock 2s linear;
+      @include b1024 {
+        position: absolute;
+        display: inline-block;
+        width: calc((var(--candy-03-width) / var(--candy-group-width)) * 100%);
+        height: auto;
+        aspect-ratio: var(--candy-03-width) / var(--candy-03-height);
+        right: 0;
+        bottom: 0;   
+      }
+    }
+  }
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInFromButtom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rock {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  5% {
+    transform: scale(1.05);
+  }
+  10% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.05);
+  }
+  20% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  30% {
+    transform: scale(1);
+  }
+}
+@keyframes reverseRock {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-15deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+}
