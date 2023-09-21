@@ -11,6 +11,7 @@ import "./assets/css/questions.min.css";
 import "./assets/css/testResult.min.css";
 import "./assets/css/award.min.css";
 import "./assets/css/partTime.min.css"
+import "./assets/css/description.min.css"
 
 
 

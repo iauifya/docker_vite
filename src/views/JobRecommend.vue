@@ -6,7 +6,7 @@
           <div class="result-card d-flex flex-column">
             
             <h1 class="name d-flex align-items-center justify-content-center justify-content-lg-start"><span class="d-inline-block text-center">{{ quizResultOne.title }}</span></h1>
-            <div class="d-flex flex-wrap h-100" v-if="!Object.keys(quizResultOne).length > 0">
+            <div class="d-flex flex-wrap h-100" v-if="!Object.keys(quizResultOne).length">
                 <img :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 0 auto" >
               </div>
             <div class="d-flex flex-wrap h-100" v-else>
@@ -72,7 +72,7 @@
                 </div>
               </div>
               <div class="btn-view-more pt-2">
-                  <a :href="`${quizResultOne.recoJobHref}`" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
+                <a :href="`${quizResultOne.recoJobHref}`" target="_blank" class="d-flex align-items-center justify-content-center mx-auto w-100"><img src="@/assets/images/result/icon-plus.svg" alt="看更多" width="26" height="26">看更多</a>
               </div>
           </div>
         </div>
@@ -86,12 +86,11 @@
 
 
 <script setup>
-import axios from "axios";
-import { storeToRefs } from "pinia";
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 // import { useAll } from "@/stores/all.js";
 import { Job } from "@/api/apiAll/shared.js";
+import { QuizResult } from "../api/apiAll/quiz.js";
 import { useTalentNO } from '@/composable/useTalentNO.js'
 //import { loginCertificationFn} from '@/composition-api/index';
 
@@ -277,51 +276,26 @@ const quizAgain = () => {
 
 let quizResultOne = ref([])
 
-// const fetchResult = ()=> {
-//     axios.get('http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&pageshow=1&backend=0&sdate&edate&sid&skey&order_by&status')
-//       .then(res => {
-//         console.log(res.data.dataList[res.data.dataList.length - 1].answer);
-//         quizResultOne = quizResult.filter((item)=>{
-//           return item.number === res.data.dataList[res.data.dataList.length - 1].answer
-//         })
-//         console.log(quizResultOne)
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }
-
-//api url 正式站/測試站
-let url = '';
-  if(location.host === 'event.1111.com.tw'){
-    url = `https://event.1111.com.tw/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}`
-  } else if(location.host === '192.168.1.234'){
-    url = `http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}`
-  } else{
-    url = `http://192.168.1.234/eventAPI/23yCandyPt/frontend/api_get.asp?apitype=signup&page=1&backend=0&talentNo=${talentNO}` //上正式前要在換正式
-}
-
 //測驗結果對應
-async function fetchResult() {
-  try {
-    const res = await axios.get(url);
+let payload = { apitype: 'signup', page: 1, backend: 0, talentNo: talentNO }
+const fetchResult = ()=> {
+  QuizResult(payload)
+  .then(res => {
     console.log(res.data.dataList[res.data.dataList.length - 1].answer);
-    // quizResultOne.splice(0,quizResultOne.length,...quizResult.filter((item) => {
-    //   return item.number === res.data.dataList[res.data.dataList.length - 1].answer;
-    // }))
     quizResultOne.value= quizResult.find((item) => {
       return item.number === res.data.dataList[res.data.dataList.length - 1].answer;
     })
-    console.log(quizResultOne);
-  } catch (error) {
+    console.log(quizResultOne)
+  })
+  .catch(error => {
     console.log(error);
-  }
+  });
+  
 }
 
 onMounted(async() => {
   await fetchResult()
   console.log(quizResultOne.value)
-  console.log(quizResultOne.value.length)
 
   if(!talentNO){
     router.replace('/jobrecommendlogin')
