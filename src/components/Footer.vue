@@ -6,7 +6,7 @@
         <ul>
             <li><a href="javascript:;" @click="copyURL" class="d-block"><img src="@/assets/images/icon-share.svg" alt="分享複製連結" width="45" height="45" decoding="async"></a></li>
             <!-- <li><a href="https://instagram.com/1111studentjobs?igshid=MWZjMTM2ODFkZg==" class="d-block"><img src="@/assets/images/icon-ig.svg" alt="ig貼文" width="45" height="45" decoding="async"></a></li> -->
-            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.1.234%2Fevent23%2FcandyPT%2Fhome&amp;src=sdkpreparse" target="_blank" class="d-block"><img src="@/assets/images/icon-fb.svg" alt="fb貼文" width="45" height="45" decoding="async"></a></li>
+            <li><a :href="`https://www.facebook.com/sharer/sharer.php?u=${domain}%2Fevent23%2FcandyPT%2Fhome&amp;src=sdkpreparse`" target="_blank" class="d-block"><img src="@/assets/images/icon-fb.svg" alt="fb貼文" width="45" height="45" decoding="async"></a></li>
             <li><a href="javascript:;" class="d-block gotop"><img src="@/assets/images/icon-gotop.svg" alt="gotop" width="45" height="45" decoding="async" @click="scrollToTop" ></a></li>
         </ul>
     </div>
@@ -14,6 +14,10 @@
 
 <script setup>
 
+import { ref, onMounted } from 'vue'
+
+const domain = ref('');
+domain.value = location.host == 'event.1111.com.tw' ? 'https://event.1111.com.tw' : 'http://192.168.1.234'
 
 const copyURL =()=> {
   const URL = window.location.href;

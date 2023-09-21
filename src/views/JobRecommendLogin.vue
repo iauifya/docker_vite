@@ -28,20 +28,25 @@
                     <div class="recommend-card">
                         <h2 class="d-flex align-items-center justify-content-center"><img src="@/assets/images/result/icon-recommend-2.svg" alt="職缺強打推薦" width="43" height="35" decoding="async">職缺強打推薦</h2>
                         <div class="card-jobs my-3 my-sm-2 my-lg-3">
-                            <div v-for="(item, index) in jobList" :key="index" class="item">
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
-                                    <span class="salary w-100 text-xs-end">{{item.salary}}</span>
-                                </div>
-                                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-end justify-content-sm-between align-items-end">
-                                    <div class="job-info d-flex flex-column">
-                                        <span class="company">{{item.organs_organ}}</span>
-                                        <span class="area">{{item.workcity.split('_')[1]}}</span>
+                            <template v-if="jobList.length">
+                                <div v-for="(item, index) in jobList" :key="index" class="item">
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
+                                        <span class="salary w-100 text-xs-end">{{item.salary}}</span>
                                     </div>
-                                    <div class="btn-view-job">
-                                        <a :href="item.link" target="_blank" class="d-block">查看職缺</a>
+                                    <div class="d-flex flex-wrap flex-sm-nowrap justify-content-end justify-content-sm-between align-items-end">
+                                        <div class="job-info d-flex flex-column">
+                                            <span class="company">{{item.organs_organ}}</span>
+                                            <span class="area">{{item.workcity.split('_')[1]}}</span>
+                                        </div>
+                                        <div class="btn-view-job">
+                                            <a :href="item.link" target="_blank" class="d-block">查看職缺</a>
+                                        </div>
                                     </div>
                                 </div>
+                            </template>
+                            <div v-if="!jobList.length">
+                                <img :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 20% auto" >
                             </div>
                         </div>
                         <div class="btn-view-more pt-2">
@@ -64,6 +69,8 @@ import { useTalentNO } from '@/composable/useTalentNO.js'
 import { useRouter, useRoute } from "vue-router"
 import { Job } from "@/api/apiAll/shared.js";
 
+import loading from "@/assets/images/Spin-1s-200px.svg";
+
 const router = useRouter()
 const talentNO = useTalentNO()
 
@@ -78,7 +85,7 @@ const login = ()=>{
 }
 
 const param = ref({
-    oat: '1, 512', 
+    oat: '1', 
     col: 'ab', 
     da: '14', 
     page: '1', 
