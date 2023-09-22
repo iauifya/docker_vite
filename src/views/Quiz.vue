@@ -107,7 +107,7 @@ const questions = reactive([
             {option: 1,content: 'A.用數據跟理論，來支持自己提出的意見'},
             {option: 2,content: 'B.輕易妥協，以和為貴'},
             {option: 3,content: 'C.說服組內其他成員支持，讓自己的觀點成為多數意見'},
-            {option: 4,content: 'D.支持，讓自己的觀點成為多數意見強而有力地說服對方，不輕易退讓'}
+            {option: 4,content: 'D.強而有力地說服對方，不輕易退讓'}
         ],
         imgOne: one,
         imgTwo: two

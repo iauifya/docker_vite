@@ -2,7 +2,7 @@
 @import '../mixins/breakpoint';
 @import '../mixins/color';
 
-body {
+body.indexMain {
   &::after {
     background: url(../../images/index/bg-element-sm.svg) top center no-repeat;
     background-size: 100% !important;
@@ -13,6 +13,8 @@ body {
   }
   background: var(--system-pink-9);
 }
+
+
 
 :root {
   // 螢幕寬度

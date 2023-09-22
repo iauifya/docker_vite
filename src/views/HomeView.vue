@@ -1,6 +1,7 @@
 <template>
+
 <main>
-    <div class="activity-block">
+    <div class="activity-block" ref="mainElement">
       <div class="bg-group">
         <!-- img-cloud -->
         <img class="img-cloud" src="@/assets/images/index/bg-cloud.svg" alt="兼職打工-背景雲朵圖"  title="兼職打工-背景雲朵圖">
@@ -17,8 +18,8 @@
               <span>嗑糖!你是哪顆糖?</span>
               <img src="@/assets/images/index/title.svg" alt="嗑糖!你是哪顆糖" title="嗑糖!你是哪顆糖">
             </h2>
-            <p>完成測驗抽 LinePoint 25點</p>
-            <button @click="goActi()">活動詳情</button>
+            <p>完成測驗抽 LINE POINTS 25點</p>
+            <button @click="goDesc()">活動詳情</button>
           </div>
           <!-- 上文字 -->
           <h3 class="sub-title">
@@ -49,58 +50,62 @@
 
 <script setup>
 //import { loginCertificationFn} from '@/composition-api/index';
+import { ref,onMounted,onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
-// import { postRSVCreate} from '@/composition-api/index';
-// const payload = {
-//         talentNo: '20220322',
-//         ticketNum: '20220322',
-//       }
-//       postRSVCreate(payload);
-// const dd = loginCertificationFn();
-// console.log("dd", dd);
-const goActi = ()=> {
+
+const goDesc = ()=> {
   router.push('/description')
 }
+const mainElement = ref()
+let winHeight, navHeight, footerHeight, mainStyle, mainHeight, mainMargin, totalHeight,initialMainHeight;
+// 計算高度
+const calculateHeights = ()=> {        
+  winHeight = window.innerHeight;
+  mainStyle = window.getComputedStyle(mainElement.value);
+  mainHeight = parseInt(mainStyle.height);
+  mainMargin = parseInt(mainStyle.marginTop) + parseInt(mainStyle.marginBottom);
+  totalHeight = navHeight + footerHeight + mainHeight + mainMargin;
+  initialMainHeight = mainHeight;
+}
+// 調整高度
+const adjustHeight = ()=> {
+  if(winHeight > totalHeight){
+    const residue = winHeight - totalHeight;
+    mainElement.value.style.height = mainHeight + residue + 'px';
+  }
+}
+// 恢復高度
+const restoreHeight = ()=> {
+  mainElement.value.style.height = '';
+}
 
+let setHeight = ()=> {
+  calculateHeights();
+  adjustHeight();
+}
+let changeHeight = () => {
+  setTimeout(()=>{
+    restoreHeight();
+    calculateHeights();
+    adjustHeight();
+  }, 100);
+}
+onMounted(() => {
+  document.querySelector('body').className = 'indexMain'
+  navHeight = document.querySelector('.navbar').clientHeight;
+  footerHeight = document.querySelector('footer').clientHeight;
+  // mainElement = document.querySelector('.activity-block');
+  console.log(mainElement.value)
+  window.addEventListener('load',setHeight)
+  window.addEventListener('resize', changeHeight);
 
-    let winHeight, navHeight, footerHeight, mainElement, mainStyle, mainHeight, marginMargin, totalHeight , mainMargin , initialMainHeight;
-    // 計算高度
-    const calculateHeights = ()=> {        
-      winHeight = window.innerHeight;
-      navHeight = document.querySelector('.navbar').clientHeight;
-      footerHeight = document.querySelector('footer').clientHeight;
-      mainElement = document.querySelector('.activity-block');
-      mainStyle = window.getComputedStyle(mainElement);
-      mainHeight = parseInt(mainStyle.height);
-      mainMargin = parseInt(mainStyle.marginTop) + parseInt(mainStyle.marginBottom);
-      totalHeight = navHeight + footerHeight + mainHeight + mainMargin;
-      initialMainHeight = mainHeight;
-    }
-    // 調整高度
-    const adjustHeight = ()=> {
-      if(winHeight > totalHeight){
-        const residue = winHeight - totalHeight;
-        mainElement.style.height = mainHeight + residue + 'px';
-      }
-    }
-    // 恢復高度
-    const restoreHeight = ()=> {
-      mainElement.style.height = '';
-    }
-
-    window.addEventListener('load', ()=> {
-      calculateHeights();
-      adjustHeight();
-    })
-    
-    window.addEventListener('resize', () => {
-      setTimeout(()=>{
-        restoreHeight();
-        calculateHeights();
-        adjustHeight();
-      }, 100);
-    });
+})
+onBeforeUnmount(() => {
+  document.body.removeAttribute('class')
+  window.removeEventListener('load',setHeight)
+  window.removeEventListener('resize', changeHeight);
+})
 
 </script>
 

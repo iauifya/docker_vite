@@ -12,7 +12,7 @@
             <div class="d-flex flex-wrap h-100" v-else>
               
               <div class="candy-img">
-                <img :src="quizResultOne.img" alt="薄荷涼糖" width="146" height="146" decoding="async" loading="lazy">
+                <img :src="quizResultOne.img" :alt="quizResultOne.title" width="146" height="146" decoding="async" loading="lazy">
                 <!-- <img src="assets/images/result/candy02.webp" alt="棒棒糖" width="146" height="231" decoding="async" loading="lazy">
                 <img src="assets/images/result/candy03.webp" alt="水果軟糖" width="122" height="144" decoding="async" loading="lazy">
                 <img src="assets/images/result/candy04.webp" alt="咖啡硬糖" width="145" height="146" decoding="async" loading="lazy">
@@ -42,7 +42,7 @@
       </div>
 
       <div class="recommend w-100">
-          <div class="recommend-element d-flex align-items-center">
+          <div class="dot-element d-flex align-items-center">
               <span class="dot d-inline-block"></span>
               <span class="dot d-inline-block"></span>
               <span class="dot d-inline-block"></span>

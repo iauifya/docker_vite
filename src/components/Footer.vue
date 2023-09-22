@@ -16,6 +16,8 @@
 
 import { ref, onMounted } from 'vue'
 
+//const footerHeight = ref()
+
 const domain = ref('');
 domain.value = location.host == 'event.1111.com.tw' ? 'https://event.1111.com.tw' : 'http://192.168.1.234'
 
