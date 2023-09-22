@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="recommend w-100">
-                    <div class="recommend-element d-flex align-items-center">
+                    <div class="dot-element d-flex align-items-center">
                         <span class="dot d-inline-block"></span>
                         <span class="dot d-inline-block"></span>
                         <span class="dot d-inline-block"></span>

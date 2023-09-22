@@ -42,7 +42,10 @@ onMounted(()=>{
     // console.log(navToggler)
     navLinks.forEach((navLink)=>{
         navLink.addEventListener('click',()=> {
-            navToggler.click();
+            if(document.body.offsetWidth < 992){
+                navToggler.click();
+            }
+            
         })
     })
 
