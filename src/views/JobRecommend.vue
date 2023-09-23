@@ -12,7 +12,7 @@
             <div class="d-flex flex-wrap h-100" v-else>
               
               <div class="candy-img">
-                <img :src="quizResultOne.img" :alt="quizResultOne.title" width="146" height="146" decoding="async" loading="lazy">
+                <img :src="quizResultOne.img" :alt="quizResultOne.title" :width="quizResultOne.width" :height="quizResultOne.height" decoding="async" loading="lazy">
                 <!-- <img src="assets/images/result/candy02.webp" alt="棒棒糖" width="146" height="231" decoding="async" loading="lazy">
                 <img src="assets/images/result/candy03.webp" alt="水果軟糖" width="122" height="144" decoding="async" loading="lazy">
                 <img src="assets/images/result/candy04.webp" alt="咖啡硬糖" width="145" height="146" decoding="async" loading="lazy">
@@ -120,6 +120,8 @@ let quizResult = reactive ([
     number: '1', 
     title: '薄荷涼糖', 
     img: one,
+    width: '146',
+    height: '146',
     recoJob: '儲備幹部、業務類', 
     recoJobHref: 'https://1111.com.tw/215998/', 
     feature: '不畏挑戰的你，一旦設定目標便會全力衝刺，如同薄荷涼糖的嗆涼，是股不容忽視的強大氣場', 
@@ -137,6 +139,8 @@ let quizResult = reactive ([
     number: '2', 
     title: '棒棒糖', 
     img: two,
+    width: '146',
+    height: '231',
     recoJob: '服務業、時尚產業、演藝產業', 
     recoJobHref: 'https://1111.com.tw/215999/', 
     feature: '外向熱情、歡樂一百點是你的獨特魅力，就像五彩繽紛的棒棒糖，總是最耀眼的存在', 
@@ -154,6 +158,8 @@ let quizResult = reactive ([
     number: '3', 
     title: '水果軟糖', 
     img: three,
+    width: '122',
+    height: '144',
     recoJob: '行政文書、人資、客服', 
     recoJobHref: 'https://1111.com.tw/216000/', 
     feature: '老少咸宜的水果軟糖，有誰不愛? 就像隨和溫暖的你，讓周圍朋友經常感受到你的貼心之處', 
@@ -171,6 +177,8 @@ let quizResult = reactive ([
     number: '4', 
     title: '咖啡硬糖', 
     img: four,
+    width: '145',
+    height: '146',
     recoJob: '會計類、工程機械類', 
     recoJobHref: 'https://1111.com.tw/216001/', 
     feature: '追求完美專業的你，不眠不休也要顧到每一個小細節，咖啡硬糖幫你提神，也跟你的肝一樣硬', 
@@ -187,6 +195,8 @@ let quizResult = reactive ([
     number: '5', 
     title: '跳跳糖', 
     img: five,
+    width: '146',
+    height: '135',
     recoJob: '銷售、廣告類', 
     recoJobHref: 'https://1111.com.tw/216002/', 
     feature: '無論任何場合，你是眾人最關注的焦點，外放直接的溝通方式，像吃到跳跳糖，給人最直接的感官刺激', 
@@ -203,6 +213,8 @@ let quizResult = reactive ([
     number: '6', 
     title: '甘草糖', 
     img: six,
+    width: '146',
+    height: '146',
     recoJob: '科研、工程類', 
     recoJobHref: 'https://1111.com.tw/216003/', 
     feature: '面對任何事總能理性分析，讓人折服於你解決問題的能力，剛正不阿的你就像甘草糖一樣，糖果界的大魔王', 
@@ -219,6 +231,8 @@ let quizResult = reactive ([
     number: '7', 
     title: '巧克力', 
     img: seven,
+    width: '143',
+    height: '126',
     recoJob: '媒體、教育類', 
     recoJobHref: 'https://1111.com.tw/216004/', 
     feature: '深受歡迎的巧克力，如同討人喜歡的你，善於社交又體貼他人，大家都搶著跟你當朋友', 
@@ -235,6 +249,8 @@ let quizResult = reactive ([
     number: '8', 
     title: '喉糖', 
     img: eight,
+    width: '157',
+    height: '120',
     recoJob: '醫療類、企劃設計類', 
     recoJobHref: 'https://1111.com.tw/216005/', 
     feature: '低調不張揚，只在暗處觀察、默默計畫的你，其實才是真高手！不像其他華麗糖果，你是必要時才出手的喉糖', 
@@ -252,6 +268,8 @@ let quizResult = reactive ([
     number: '9', 
     title: '變色糖', 
     img: nine,
+    width: '146',
+    height: '142',
     recoJob: '任何職務', 
     recoJobHref: 'https://1111.com.tw/216006/', 
     feature: '懂得看場合調整定位，如同層層風味的變色糖，能在新環境或新任務中成為轉換不同角色。', 
