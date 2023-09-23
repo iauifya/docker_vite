@@ -66,12 +66,15 @@ import axios from "axios";
 import { ref, onMounted } from 'vue'
 import { loginCertificationFn} from '@/composition-api/index'
 import { useTalentNO } from '@/composable/useTalentNO.js'
+import { getPathname } from '@/composable/usePathname.js'
 import { useRouter, useRoute } from "vue-router"
 import { Job } from "@/api/apiAll/shared.js";
 
 import loading from "@/assets/images/Spin-1s-200px.svg";
 
+
 const router = useRouter()
+const usePathname = getPathname()
 const talentNO = useTalentNO()
 
 const jobList = ref([])

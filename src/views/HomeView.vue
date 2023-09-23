@@ -101,11 +101,15 @@ onMounted(() => {
   // window.addEventListener('resize', changeHeight);
 
 })
-// onBeforeUnmount(() => {
-//   document.body.removeAttribute('class')
-//   window.removeEventListener('load',setHeight)
-//   window.removeEventListener('resize', changeHeight);
-// })
+onBeforeUnmount(() => {
+  document.body.removeAttribute('class')
+  // window.removeEventListener('load',setHeight)
+  // window.removeEventListener('resize', changeHeight);
+})
+
+import { getPathname } from '@/composable/usePathname.js'
+
+const usePathname = getPathname()
 
 </script>
 

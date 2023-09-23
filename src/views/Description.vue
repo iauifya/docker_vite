@@ -327,11 +327,15 @@ import { useRouter, useRoute } from "vue-router";
 //import { useTalentNO } from '@/composable/useTalentNO.js'
 import { TalentNo } from '@/api/apiAll/shared';
 // import { loginCertificationFn} from '@/composition-api/index';
+import { getPathname } from '@/composable/usePathname.js'
 
 const talentNO = TalentNo()
 const router = useRouter()
+const usePathname = getPathname()
 
 const mainElement = ref()
+
+
 
 console.log(talentNO)
 

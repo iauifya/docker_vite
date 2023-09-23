@@ -16,9 +16,25 @@
     .navbar-nav {
         .nav-link {
             color: var(--system-white);
-            &:hover {
-                color: var(--system-white);
-                text-decoration: underline;
+            transition: none;
+            span {
+                padding: 0 7px;
+                display: inline-block;
+                line-height: 1.25;
+                transition: all .25s linear;
+                border-radius: 5px;
+            }
+            &:hover,&:focus {
+                span {
+                    background: var(--system-white);
+                    color: var(--system-purple-3);
+                }
+            }
+        }
+        .nav-link.active {
+            span {
+                background: var(--system-white);
+                color: var(--system-purple-3);
             }
         }
     }
