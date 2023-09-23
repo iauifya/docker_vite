@@ -19,9 +19,9 @@
           <!-- question 01 -->
           <div class="card-question">
             <!-- 開學打工人物圖 -->
-            <div class="person-group">
-              <div class="person-left"><img :src="currentQuestion.imgOne" alt="開學打工人物圖" decoding="async" loading="lazy"></div>
-              <div class="person-right"><img :src="currentQuestion.imgTwo" alt="開學打工人物圖" decoding="async" loading="lazy"></div>
+            <div class="person-group" >
+              <div v-for="img in currentQuestion.images" :class="img.class"><img :src="img.person" alt="開學打工人物圖" decoding="async" loading="lazy"></div>
+              <!-- <div class="person-right"><img :src="currentQuestion.imgTwo" alt="開學打工人物圖" decoding="async" loading="lazy"></div> -->
             </div>
             <!-- question -->
             <article class="card-content">
@@ -43,6 +43,7 @@
                 </li>
               </ul>
               <button type="button" class="btn btn-front-check" @click="nextQuestion">{{ currentQuestionIndex === 6 ? '送出答案':'下一題' }}</button>
+              <!-- <button type="button" @click="prevQuestion">上一題</button> -->
             </article>
           </div>
         </div>
@@ -87,8 +88,10 @@ const questions = reactive([
             {option: 3,content: 'C.等中間下課時間再混進教室，賭教授還沒點名'},
             {option: 4,content: 'D.不假思索衝出門，用最快方式抵達'}
         ],
-        imgOne: one,
-        imgTwo: two
+        images: [
+          {person:one, class:'person-left'},
+          {person:two, class:'person-right'},
+        ]
     },
     {
         id:2, 
@@ -99,8 +102,10 @@ const questions = reactive([
             {option: 3,content: 'C.冒出一堆天馬行空的浮誇點子'},
             {option: 4,content: 'D.挺身主導討論，快速做出決策'}
         ],
-        imgOne: three,
-        imgTwo: four
+        images: [
+          {person:three, class:'person-left'},
+          {person:four, class:'person-right'},
+        ]
     },
     {
         id:3, 
@@ -111,8 +116,10 @@ const questions = reactive([
             {option: 3,content: 'C.說服組內其他成員支持，讓自己的觀點成為多數意見'},
             {option: 4,content: 'D.強而有力地說服對方，不輕易退讓'}
         ],
-        imgOne: one,
-        imgTwo: two
+        images: [
+          {person:one, class:'person-left'},
+          {person:two, class:'person-right'},
+        ]
     },
     {
         id:4, 
@@ -123,8 +130,10 @@ const questions = reactive([
             {option: 3,content: 'C.去啊，再揪同學ABCD，大家一起去'},
             {option: 4,content: 'D.拒絕，不想浪費時間跟不熟的人吃飯'}
         ],
-        imgOne: three,
-        imgTwo: four
+        images: [
+          {person:three, class:'person-left'},
+          {person:four, class:'person-right'},
+        ]
     },
     {
         id:5, 
@@ -135,8 +144,10 @@ const questions = reactive([
             {option: 3,content: 'C.優先關注新品上市或拍照很美的品項'},
             {option: 4,content: 'D.想吃什麼就點，決定很快'}
         ],
-        imgOne: one,
-        imgTwo: two
+        images: [
+          {person:one, class:'person-left'},
+          {person:two, class:'person-right'},
+        ]
     },
     {
         id:6, 
@@ -147,8 +158,10 @@ const questions = reactive([
             {option: 3,content: 'C.怎麼會有這麼不講道理的人，立刻PO社群讓大家評評理'},
             {option: 4,content: 'D.無法吞忍不合理的事，直接跟客人開槓'}
         ],
-        imgOne: three,
-        imgTwo: four
+        images: [
+          {person:three, class:'person-left'},
+          {person:four, class:'person-right'},
+        ]
     },
     {
         id:7, 
@@ -159,8 +172,10 @@ const questions = reactive([
             {option: 3,content: 'C.本來想買A牌，結果到現場被店員推銷而改買B牌'},
             {option: 4,content: 'D.找到想買的立刻結帳離開'}
         ],
-        imgOne: one,
-        imgTwo: two
+        images: [
+          {person:one, class:'person-left'},
+          {person:two, class:'person-right'},
+        ]
     },
 ])
 
@@ -170,7 +185,6 @@ const answers = reactive([])
 const nextQuestion = ()=>{
     if(currentAnswer.value){
         // answers.push({questionId: currentQuestionIndex.value + 1, answer: currentAnswer.value})
-        
         answers.push(currentAnswer.value)
         // currentQuestionId++
         if (currentQuestionIndex.value < questions.length - 1) {
@@ -185,9 +199,6 @@ const nextQuestion = ()=>{
         } else {
             // 提交答案，打API將答案送出去
             console.log('提交答案', answers);
-            
-            console.log(talentNO)
-
             // let result = answers.reduce((obj, item) => {
             //   obj[item] = obj[item] ? obj[item] + 1 : 1;
             //   return obj;
@@ -205,7 +216,7 @@ const nextQuestion = ()=>{
             });
 
             //console.log(result);
-            const answerNum = Object.values(result)
+            const answerNum = Object.values(result) //只取出物件中的值
             console.log(answerNum)
             
             const finalResult = calcScore(answerNum)
@@ -240,6 +251,10 @@ const nextQuestion = ()=>{
     }
 }
 
+// const prevQuestion = ()=>{
+//   currentQuestionIndex.value--
+//   answers.pop()
+// }
 
 
 onMounted(() => {
