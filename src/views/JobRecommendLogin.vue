@@ -31,7 +31,7 @@
                             <template v-if="jobList.length">
                                 <div v-for="(item, index) in jobList" :key="index" class="item">
                                     <div class="d-flex align-items-center flex-wrap">
-                                        <h3><a href="#" target="_blank" class="d-block">{{item.position0}}</a></h3>
+                                        <h3><a :href="item.link" target="_blank" class="d-block">{{item.position0}}</a></h3>
                                         <span class="salary w-100 text-xs-end">{{item.salary}}</span>
                                     </div>
                                     <div class="d-flex flex-wrap flex-sm-nowrap justify-content-end justify-content-sm-between align-items-end">
