@@ -30,7 +30,7 @@
 
 
  const route = useRoute();
- const isHomeRoute = computed(() => route.path === '/home');
+ const isHomeRoute = computed(() => route.path === '/home' || route.path === '/');
 
 
 
