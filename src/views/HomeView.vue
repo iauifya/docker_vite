@@ -1,7 +1,7 @@
 <template>
 
 <main>
-    <div class="activity-block" ref="mainElement">
+    <div class="activity-block">
       <div class="bg-group">
         <!-- img-cloud -->
         <img class="img-cloud" src="@/assets/images/index/bg-cloud.svg" alt="兼職打工-背景雲朵圖"  title="兼職打工-背景雲朵圖">
@@ -57,55 +57,55 @@ const router = useRouter();
 const goDesc = ()=> {
   router.push('/description')
 }
-const mainElement = ref()
-let winHeight, navHeight, footerHeight, mainStyle, mainHeight, mainMargin, totalHeight,initialMainHeight;
+// const mainElement = ref()
+// let winHeight, navHeight, footerHeight, mainStyle, mainHeight, mainMargin, totalHeight,initialMainHeight;
 // 計算高度
-const calculateHeights = ()=> {        
-  winHeight = window.innerHeight;
-  mainStyle = window.getComputedStyle(mainElement.value);
-  mainHeight = parseInt(mainStyle.height);
-  mainMargin = parseInt(mainStyle.marginTop) + parseInt(mainStyle.marginBottom);
-  totalHeight = navHeight + footerHeight + mainHeight + mainMargin;
-  initialMainHeight = mainHeight;
-}
+// const calculateHeights = ()=> {        
+//   winHeight = window.innerHeight;
+//   mainStyle = window.getComputedStyle(mainElement.value);
+//   mainHeight = parseInt(mainStyle.height);
+//   mainMargin = parseInt(mainStyle.marginTop) + parseInt(mainStyle.marginBottom);
+//   totalHeight = navHeight + footerHeight + mainHeight + mainMargin;
+//   initialMainHeight = mainHeight;
+// }
 // 調整高度
-const adjustHeight = ()=> {
-  if(winHeight > totalHeight){
-    const residue = winHeight - totalHeight;
-    mainElement.value.style.height = mainHeight + residue + 'px';
-  }
-}
+// const adjustHeight = ()=> {
+//   if(winHeight > totalHeight){
+//     const residue = winHeight - totalHeight;
+//     mainElement.value.style.height = mainHeight + residue + 'px';
+//   }
+// }
 // 恢復高度
-const restoreHeight = ()=> {
-  mainElement.value.style.height = '';
-}
+// const restoreHeight = ()=> {
+//   mainElement.value.style.height = '';
+// }
 
-let setHeight = ()=> {
-  calculateHeights();
-  adjustHeight();
-}
-let changeHeight = () => {
-  setTimeout(()=>{
-    restoreHeight();
-    calculateHeights();
-    adjustHeight();
-  }, 100);
-}
+// let setHeight = ()=> {
+//   calculateHeights();
+//   adjustHeight();
+// }
+// let changeHeight = () => {
+//   setTimeout(()=>{
+//     restoreHeight();
+//     calculateHeights();
+//     adjustHeight();
+//   }, 100);
+// }
 onMounted(() => {
   document.querySelector('body').className = 'indexMain'
-  navHeight = document.querySelector('.navbar').clientHeight;
-  footerHeight = document.querySelector('footer').clientHeight;
+  // navHeight = document.querySelector('.navbar').clientHeight;
+  // footerHeight = document.querySelector('footer').clientHeight;
   // mainElement = document.querySelector('.activity-block');
-  console.log(mainElement.value)
-  window.addEventListener('load',setHeight)
-  window.addEventListener('resize', changeHeight);
+  // console.log(mainElement.value)
+  // window.addEventListener('load',setHeight)
+  // window.addEventListener('resize', changeHeight);
 
 })
-onBeforeUnmount(() => {
-  document.body.removeAttribute('class')
-  window.removeEventListener('load',setHeight)
-  window.removeEventListener('resize', changeHeight);
-})
+// onBeforeUnmount(() => {
+//   document.body.removeAttribute('class')
+//   window.removeEventListener('load',setHeight)
+//   window.removeEventListener('resize', changeHeight);
+// })
 
 </script>
 
