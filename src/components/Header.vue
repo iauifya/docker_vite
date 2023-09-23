@@ -11,12 +11,12 @@
             </button>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
                 <ul class="navbar-nav">
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/home">首頁</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/description">活動說明</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/quiz">測你的甜</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/jobrecommend">職缺強打推薦</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/working">打工前停看聽</router-link></li>
-                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" to="/winner">得獎公告</router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'home' || pathname === ''}" to="/home"><span>首頁</span></router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'description'}" to="/description"><span>活動說明</span></router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'quiz'}" to="/quiz"><span>測你的甜</span></router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'jobrecommend'}" to="/jobrecommend"><span>職缺強打推薦</span></router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'working'}" to="/working"><span>打工前停看聽</span></router-link></li>
+                  <li class="nav-item d-flex align-items-center"><router-link class="nav-link" :class="{active: pathname === 'winner'}" to="/winner"><span>得獎公告</span></router-link></li>
                 </ul>
             </div>
         </div>
@@ -27,9 +27,13 @@
 <script setup>
  import { ref,onMounted,computed } from 'vue';
  import { useRoute } from "vue-router";
+ import { storeToRefs } from "pinia";
+ import { useAll } from "@/stores/all.js";
 
 
  const route = useRoute();
+ const useAlls= useAll()
+ const { pathname } = storeToRefs(useAlls)
  const isHomeRoute = computed(() => route.path === '/home' || route.path === '/');
 
 

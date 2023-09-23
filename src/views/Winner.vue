@@ -62,6 +62,9 @@
 // import {  getAll } from "@/composition-api/index";
 // import { ref, computed, onMounted } from 'vue';
 // import Loading from "@/components/Loading.vue";
+import { getPathname } from '@/composable/usePathname.js'
+
+const usePathname = getPathname()
 
 //import { loginCertificationFn} from '@/composition-api/index';
 // import TheWelcome from '../components/TheWelcome.vue'

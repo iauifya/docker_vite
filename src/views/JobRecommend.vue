@@ -92,6 +92,7 @@ import { useRouter, useRoute } from "vue-router";
 import { Job } from "@/api/apiAll/shared.js";
 import { QuizResult } from "../api/apiAll/quiz.js";
 import { useTalentNO } from '@/composable/useTalentNO.js'
+import { getPathname } from '@/composable/usePathname.js'
 //import { loginCertificationFn} from '@/composition-api/index';
 
 import one from "@/assets/images/result/candy01.svg";
@@ -107,6 +108,7 @@ import nine from "@/assets/images/result/candy09.svg";
 import loading from "@/assets/images/Spin-1s-200px.svg";
 
 const router = useRouter()
+const usePathname = getPathname()
 const talentNO = useTalentNO()
 // const useAlls = useAll()
 
