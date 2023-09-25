@@ -44,7 +44,7 @@
               </ul>
               <div>
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 0" @click="prevQuestion" style="margin-right: 8px;">上一題</button>
-                <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex === 6" @click="finishQuestion">送出答案</button>
+                <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex === 6 && answers[6]" @click="finishQuestion">送出答案</button>
               </div>
               
             </article>
@@ -192,11 +192,10 @@ const nextQuestion = (answer)=>{
         // currentQuestionId++
         answers[currentQuestionIndex.value] = answer
         console.log(answers)
-        router.push({path:'quiz',query:{id: currentQuestionId.value + 1}})
         // router.push({ path: `/quiz/${currentQuestionId.value + 1}` })
-
         if (currentQuestionIndex.value < questions.length - 1) {
           // 切換到下一個問題
+          router.push({path:'quiz',query:{id: currentQuestionId.value + 1}})
           currentQuestionIndex.value++;
           // currentAnswer.value = '';
           // const formCheckElements = document.querySelectorAll('.form-check');
@@ -259,6 +258,7 @@ const nextQuestion = (answer)=>{
 }
 
 const finishQuestion = () =>{
+  
   router.push('/jobrecommend')
 }
 
