@@ -29,9 +29,9 @@
               <p>請選擇：</p>
 
               <ul class="radio-group">
-                <li class="form-check" v-for="answer in currentQuestion.answer">
-                  <div class="form-check-group">
-                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" v-model="currentAnswer">
+                <li class="form-check" v-for="answer in currentQuestion.answer" :class="answer.option === answers[currentQuestionIndex]?'active': ''">
+                  <div class="form-check-group" >
+                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" :key="answer.content" @click='nextQuestion(answer.option)'>
                     <label class="form-check-label" :for="answer.option"><p>{{ answer.content }}</p></label> 
                   </div>
                   <!-- 背景裝飾 -->
@@ -42,8 +42,11 @@
                   </div>
                 </li>
               </ul>
-              <button type="button" class="btn btn-front-check" @click="nextQuestion">{{ currentQuestionIndex === 6 ? '送出答案':'下一題' }}</button>
-              <!-- <button type="button" @click="prevQuestion">上一題</button> -->
+              <div>
+                <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 0" @click="prevQuestion" style="margin-right: 8px;">上一題</button>
+                <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex === 6" @click="finishQuestion">送出答案</button>
+              </div>
+              
             </article>
           </div>
         </div>
@@ -52,7 +55,7 @@
 </template>
 
 <script setup>
-import { ref,reactive, computed, onMounted } from 'vue'
+import { ref,reactive, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 import { loginCertificationFn} from '@/composition-api/index'
 import { useTalentNO } from '@/composable/useTalentNO.js'
@@ -71,7 +74,7 @@ const talentNO = useTalentNO()
 const currentAnswer = ref('')
 const currentQuestionIndex = ref(0)
 const currentQuestionId = computed(()=>{
-    return `q${currentQuestionIndex.value} + 1`
+    return currentQuestionIndex.value + 1
 })
 const currentQuestion = computed(()=>{
     return questions[currentQuestionIndex.value]
@@ -180,97 +183,140 @@ const questions = reactive([
 ])
 
 
-const answers = reactive([])
+let answers = reactive([])
 
-const nextQuestion = ()=>{
-    if(currentAnswer.value){
+const nextQuestion = (answer)=>{
+    if(answer){
         // answers.push({questionId: currentQuestionIndex.value + 1, answer: currentAnswer.value})
-        answers.push(currentAnswer.value)
+        //answers.push(currentAnswer.value)
         // currentQuestionId++
+        answers[currentQuestionIndex.value] = answer
+        console.log(answers)
+        router.push({path:'quiz',query:{id: currentQuestionId.value + 1}})
+        // router.push({ path: `/quiz/${currentQuestionId.value + 1}` })
+
         if (currentQuestionIndex.value < questions.length - 1) {
-            // 切換到下一個問題
-            currentQuestionIndex.value++;
-            currentAnswer.value = '';
-            const formCheckElements = document.querySelectorAll('.form-check');
-            formCheckElements.forEach(formCheck => {
-                // 將當前點擊的元素移除 'active' 類別
-                formCheck.classList.remove('active');
-              });
+          // 切換到下一個問題
+          currentQuestionIndex.value++;
+          // currentAnswer.value = '';
+          // const formCheckElements = document.querySelectorAll('.form-check');
+          // formCheckElements.forEach(formCheck => {
+          //   // 將當前點擊的元素移除 'active' 類別
+          //   formCheck.classList.remove('active');
+          // });
         } else {
-            // 提交答案，打API將答案送出去
-            console.log('提交答案', answers);
-            // let result = answers.reduce((obj, item) => {
-            //   obj[item] = obj[item] ? obj[item] + 1 : 1;
-            //   return obj;
-            // }, {});
-            // console.log(result); // Object {1: 2, 2: 1, 3: 1, a: 2, b: 1}
-            const possibleNumbers = [1, 2, 3, 4];
+          // 提交答案，打API將答案送出去
+          console.log('提交答案', answers);
+          // let result = answers.reduce((obj, item) => {
+          //   obj[item] = obj[item] ? obj[item] + 1 : 1;
+          //   return obj;
+          // }, {});
+          // console.log(result); // Object {1: 2, 2: 1, 3: 1, a: 2, b: 1}
+          const possibleNumbers = [1, 2, 3, 4];
+          let result = possibleNumbers.reduce((obj, item) => {
+              obj[item] = 0; // 初始化所有可能的數字等於0的情況
+              return obj;
+          }, {});
 
-            let result = possibleNumbers.reduce((obj, item) => {
-                obj[item] = 0; // 初始化所有可能的數字等於0的情況
-                return obj;
-            }, {});
+          answers.forEach((item) => {
+              result[item]++; // 對出現的數字進行記數
+          });
 
-            answers.forEach((item) => {
-                result[item]++; // 對出現的數字進行記數
-            });
+          //console.log(result);
+          const answerNum = Object.values(result) //只取出物件中的值
+          console.log(answerNum)
+          
+          const finalResult = calcScore(answerNum)
+          console.log(finalResult)
+          //router.push('/jobrecommend')
 
-            //console.log(result);
-            const answerNum = Object.values(result) //只取出物件中的值
-            console.log(answerNum)
-            
-            const finalResult = calcScore(answerNum)
-            console.log(finalResult)
+          console.log(answers)
+          let payload = { talentNo: talentNO, answerArray: answers.join(','), answer: finalResult }
+          SendQuiz(payload)
+          .then(res => {
+            console.log(res);
             //router.push('/jobrecommend')
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+          //轉成form data格式
+          // const form = new FormData()
+          // //form.append('name', name.value)
+          // form.append('talentNo', talentNO)
+          // form.append('answerArray', answers)
+          // form.append('answer', finalResult)
 
-            //轉成form data格式
-            // const form = new FormData()
-            // //form.append('name', name.value)
-            // form.append('talentNo', talentNO)
-            // form.append('answerArray', answers)
-            // form.append('answer', finalResult)
+          // const sendQuiz = (payload)=> axios.post(url,
+          //   payload
+          // )
 
-            // const sendQuiz = (payload)=> axios.post(url,
-            //   payload
-            // )
-            console.log(answers)
-            let payload = { talentNo: talentNO, answerArray: answers.join(','), answer: finalResult }
-            SendQuiz(payload)
-            .then(res => {
-              console.log(res);
-              router.push('/jobrecommend')
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-
-            //sendQuiz(form)
+          //sendQuiz(form)
         }
     }else{
       alert('請選一個答案唷~')
     }
 }
 
-// const prevQuestion = ()=>{
-//   currentQuestionIndex.value--
-//   answers.pop()
-// }
+const finishQuestion = () =>{
+  router.push('/jobrecommend')
+}
 
+const prevQuestion = ()=>{
+  if(currentQuestionIndex.value === 0){
+    alert('已達第一題囉')
+  }
+  // router.go(-1)
+  router.push({path:'quiz',query:{id: currentQuestionId.value - 1}})
+  currentQuestionIndex.value--
+  // currentAnswer.value = answers[currentQuestionIndex.value];
+  // answers.splice(answers.length-1, 1, currentAnswer.value)
+  console.log(answers);
+}
+
+// const resetPage = ()=>{
+//   return ''
+// }
 
 onMounted(() => {
   if(!talentNO){
     loginCertificationFn()
   }
-  const formCheckElements = document.querySelectorAll('.form-check');
-  formCheckElements.forEach((formCheck) => {
-    formCheck.addEventListener('click', ()=> {
-      //移除所有元素的 'active' 類別
-      formCheckElements.forEach((element)=> {
-        element.classList.remove('active');
-      });
-      // 將當前點擊的元素添加 'active' 類別
-      formCheck.classList.add('active');
-    });
-  });
+  // const questionBlock = document.querySelector('.questions-block')
+  // console.log(questionBlock)
+  let preventReload = (event)=>{
+    event.preventDefault()
+    event.returnValue = ''
+  }
+
+  let setGoBack =  (event)=>{
+    router.go(0)
+  }
+
+  let setReload = ()=>{
+    router.push({path:'quiz',query:{id: 1}})
+  }
+  
+  window.addEventListener('beforeunload',preventReload)
+  window.addEventListener("popstate",setGoBack)
+
+  window.addEventListener('load',setReload)
+  // const formCheckElements = document.querySelectorAll('.form-check');
+  // formCheckElements.forEach((formCheck) => {
+  //   formCheck.addEventListener('click', ()=> {
+  //     //移除所有元素的 'active' 類別
+  //     formCheckElements.forEach((element)=> {
+  //       element.classList.remove('active');
+  //     });
+  //     // 將當前點擊的元素添加 'active' 類別
+  //     formCheck.classList.add('active');
+  //   });
+  // });
+})
+
+onBeforeUnmount(()=>{
+  // window.removeEventListener('beforeunload',preventReload)
+  // window.removeEventListener('popstate',setGoBack)
+  // window.removeEventListener('load',setReload)
 })
 </script>
