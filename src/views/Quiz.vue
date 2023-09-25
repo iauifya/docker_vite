@@ -26,12 +26,12 @@
             <!-- question -->
             <article class="card-content">
               <h1><span class="qu-num">Q{{currentQuestionIndex + 1}}：</span>{{ currentQuestion.title }}</h1>
-              <p>請選擇：</p>
+              <p>請選擇：</p> 
 
               <ul class="radio-group">
                 <li class="form-check" v-for="answer in currentQuestion.answer" :class="answer.option === answers[currentQuestionIndex]?'active': ''">
                   <div class="form-check-group" >
-                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" :key="answer.content" @click='nextQuestion(answer.option)'>
+                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" :key="answer.content" :checked="answer.option === answers[currentQuestionIndex]?'checked': ''" @click='nextQuestion(answer.option,1000)'>
                     <label class="form-check-label" :for="answer.option"><p>{{ answer.content }}</p></label> 
                   </div>
                   <!-- 背景裝飾 -->
@@ -43,7 +43,9 @@
                 </li>
               </ul>
               <div>
+               
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 0" @click="prevQuestion" style="margin-right: 8px;">上一題</button>
+                <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 6" @click="nextQuestion(answers[currentQuestionIndex],0)" style="margin-right: 8px;">下一題</button>
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex === 6 && answers[6]" @click="finishQuestion">送出答案</button>
               </div>
               
@@ -185,7 +187,8 @@ const questions = reactive([
 
 let answers = reactive([])
 
-const nextQuestion = (answer)=>{
+const nextQuestion = (answer,time)=>{
+  
     if(answer){
         // answers.push({questionId: currentQuestionIndex.value + 1, answer: currentAnswer.value})
         //answers.push(currentAnswer.value)
@@ -195,8 +198,11 @@ const nextQuestion = (answer)=>{
         // router.push({ path: `/quiz/${currentQuestionId.value + 1}` })
         if (currentQuestionIndex.value < questions.length - 1) {
           // 切換到下一個問題
-          router.push({path:'quiz',query:{id: currentQuestionId.value + 1}})
-          currentQuestionIndex.value++;
+          setTimeout(() => {
+            router.push({path:'quiz',query:{id: currentQuestionId.value + 1}})
+            currentQuestionIndex.value++;
+            
+          }, time);
           // currentAnswer.value = '';
           // const formCheckElements = document.querySelectorAll('.form-check');
           // formCheckElements.forEach(formCheck => {
@@ -281,37 +287,42 @@ const prevQuestion = ()=>{
 onMounted(() => {
   if(!talentNO){
     loginCertificationFn()
-  }
-  // const questionBlock = document.querySelector('.questions-block')
-  // console.log(questionBlock)
-  let preventReload = (event)=>{
-    event.preventDefault()
-    event.returnValue = ''
-  }
+  }else{
 
-  let setGoBack =  (event)=>{
-    router.go(0)
-  }
 
-  let setReload = ()=>{
-    router.push({path:'quiz',query:{id: 1}})
-  }
-  
-  window.addEventListener('beforeunload',preventReload)
-  window.addEventListener("popstate",setGoBack)
 
-  window.addEventListener('load',setReload)
-  // const formCheckElements = document.querySelectorAll('.form-check');
-  // formCheckElements.forEach((formCheck) => {
-  //   formCheck.addEventListener('click', ()=> {
-  //     //移除所有元素的 'active' 類別
-  //     formCheckElements.forEach((element)=> {
-  //       element.classList.remove('active');
-  //     });
-  //     // 將當前點擊的元素添加 'active' 類別
-  //     formCheck.classList.add('active');
-  //   });
-  // });
+    
+    // const questionBlock = document.querySelector('.questions-block')
+    // console.log(questionBlock)
+    let preventReload = (event)=>{
+      event.preventDefault()
+      event.returnValue = ''
+    }
+
+    let setGoBack =  (event)=>{
+      router.go(0)
+    }
+
+    let setReload = ()=>{
+      router.push({path:'quiz',query:{id: 1}})
+    }
+    
+    window.addEventListener('beforeunload',preventReload)
+    window.addEventListener("popstate",setGoBack)
+
+    window.addEventListener('load',setReload)
+    // const formCheckElements = document.querySelectorAll('.form-check');
+    // formCheckElements.forEach((formCheck) => {
+    //   formCheck.addEventListener('click', ()=> {
+    //     //移除所有元素的 'active' 類別
+    //     formCheckElements.forEach((element)=> {
+    //       element.classList.remove('active');
+    //     });
+    //     // 將當前點擊的元素添加 'active' 類別
+    //     formCheck.classList.add('active');
+    //   });
+    // });
+  }
 })
 
 onBeforeUnmount(()=>{
