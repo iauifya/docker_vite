@@ -302,7 +302,7 @@ const prevQuestion = ()=>{
 
 let preventReload = (event)=>{
     event.preventDefault()
-    event.returnValue = false
+    event.returnValue = ''
   }
 
 // let setGoBack =  (event)=>{
