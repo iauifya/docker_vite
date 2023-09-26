@@ -1,7 +1,6 @@
 <template>
   <main>
     <section class="questions-block">
-
         <div class="container-inner">
           <!-- 進度條 group -->
           <div class="progress-group">
@@ -70,16 +69,24 @@ import four from "@/assets/images/questions/person_04.svg";
 import { SendQuiz } from "../api/apiAll/quiz.js";
 
 const router = useRouter();
+const route = useRoute();
+
 const usePathname = getPathname()
 const talentNO = useTalentNO()
 
 const currentAnswer = ref('')
-const currentQuestionIndex = ref(0)
+//const currentQuestionIndex = ref(0)
 
-
-const currentQuestionId = computed(()=>{
-    return currentQuestionIndex.value + 1
+const currentQuestionIndex = computed({
+  get: () => (route.query.id??1) - 1,
+  set: (value) => {
+    router.push({ query: { id: value + 1 } })
+  }
 })
+
+// const currentQuestionId = computed(()=>{
+//     return currentQuestionIndex.value + 1
+// })
 const currentQuestion = computed(()=>{
     return questions[currentQuestionIndex.value]
 })
@@ -213,8 +220,8 @@ const nextQuestion = (answer,time)=>{
       if (currentQuestionIndex.value < questions.length - 1) {
         checkclick.value = 1
         setTimeout(() => {
-          currentQuestionIndex.value++;
-          router.push({path:'quiz',query:{id: currentQuestionId.value}})
+          currentQuestionIndex.value =currentQuestionIndex.value +1;
+          // router.push({path:'quiz',query:{id: parseInt(route.query.id) + 1}})
           checkclick.value = 0
         }, time);
         
@@ -288,40 +295,41 @@ const prevQuestion = ()=>{
   if(currentQuestionIndex.value === 0){
     alert('已達第一題囉')
   }
-
-  router.push({path:'quiz',query:{id: currentQuestionId.value - 1}})
   currentQuestionIndex.value--
+  // router.push({path:'quiz',query:{id: parseInt(route.query.id)-1}})
   
 }
 
+let preventReload = (event)=>{
+    event.preventDefault()
+    event.returnValue = false
+  }
 
+// let setGoBack =  (event)=>{
+//   event.preventDefault()
+//   const res = confirm('系統可能不會儲存你所做的變更。')
+  
+// }
+
+let setReload = ()=>{
+  router.push({path:'quiz',query:{id: 1}})
+}
 
 onMounted(() => {
   if(!talentNO){
     loginCertificationFn()
   }else{
-
-
-    let preventReload = (event)=>{
-      event.preventDefault()
-      event.returnValue = ''
-    }
-
-    let setGoBack =  (event)=>{
-      router.go(0)
-    }
-
-    let setReload = ()=>{
-      router.push({path:'quiz',query:{id: 1}})
-    }
-    
     window.addEventListener('beforeunload',preventReload)
-    window.addEventListener("popstate",setGoBack)
+    // window.addEventListener("popstate",setGoBack)
 
     window.addEventListener('load',setReload)
     
    }
 })
 
-
+onBeforeUnmount(()=>{
+  window.removeEventListener('beforeunload',preventReload)
+  // window.removeEventListener('popstate',setGoBack)
+  window.removeEventListener('load',setReload)
+})
 </script>
