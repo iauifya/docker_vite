@@ -198,9 +198,6 @@ const answerArray = reactive([])
 const checkemty = ref(0)
 const checkclick = ref(0)
 
-// const test= ()=>{
-//   console.log('有點到')
-// }
 
 const nextQuestion = (answer,time)=>{
   
@@ -308,11 +305,6 @@ let preventReload = (event)=>{
     event.returnValue = ''
   }
 
-// let setGoBack =  (event)=>{
-//   event.preventDefault()
-//   const res = confirm('系統可能不會儲存你所做的變更。')
-  
-// }
 
 let setReload = ()=>{
   router.push({path:'quiz',query:{id: 1}})
