@@ -28,9 +28,9 @@
               <p>請選擇：</p> 
 
               <ul class="radio-group">
-                <li class="form-check" v-for="answer in currentQuestion.answer" :class="answer.option === answerArray[currentQuestionIndex]?'active': ''">
+                <li class="form-check" v-for="answer in currentQuestion.answer" :class="answer.option === answerArray[currentQuestionIndex]?'active': ''" @click="answerArray[currentQuestionIndex] = answer.option">
                   <div class="form-check-group" >
-                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" :key="answer.content" :checked="answer.option === answerArray[currentQuestionIndex]?'checked': ''" @click='nextQuestion(answer.option,500)'>
+                    <input class="form-check-input" :id="answer.option" type="radio" :value="answer.option" :key="answer.content" :checked="answer.option === answerArray[currentQuestionIndex]?'checked': ''">
                     <label class="form-check-label" :for="answer.option"><p>{{ answer.content }}</p></label> 
                   </div>
                   <!-- 背景裝飾 -->
@@ -73,7 +73,7 @@ const route = useRoute();
 const usePathname = getPathname()
 const talentNO = useTalentNO()
 
-const currentAnswer = ref('')
+// const currentAnswer = ref(1)
 //const currentQuestionIndex = ref(0)
 
 const currentQuestionIndex = computed({
@@ -198,6 +198,9 @@ const answerArray = reactive([])
 const checkemty = ref(0)
 const checkclick = ref(0)
 
+// const test= ()=>{
+//   console.log('有點到')
+// }
 
 const nextQuestion = (answer,time)=>{
   
@@ -213,13 +216,14 @@ const nextQuestion = (answer,time)=>{
 
     }else{
       
-      answerArray[currentQuestionIndex.value] = answer
+      //改成在input中點擊選取時就執行這一步
+      // answerArray[currentQuestionIndex.value] = answer
         
       //如果現在題數小於總問題數，切換到下一個問題
       if (currentQuestionIndex.value < questions.length - 1) {
         checkclick.value = 1
         setTimeout(() => {
-          currentQuestionIndex.value =currentQuestionIndex.value +1;
+          currentQuestionIndex.value++
           // router.push({path:'quiz',query:{id: parseInt(route.query.id) + 1}})
           checkclick.value = 0
         }, time);
