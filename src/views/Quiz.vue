@@ -41,8 +41,7 @@
                   </div>
                 </li>
               </ul>
-              <div>
-               
+              <div style="min-height: 40px; height: 40px"> 
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 0" @click="prevQuestion" style="margin-right: 8px;">上一題</button>
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex !== 6 && answerArray[currentQuestionIndex] > 0" @click="nextQuestion(answerArray[currentQuestionIndex],0)" style="margin-right: 8px;">下一題</button>
                 <button type="button" class="btn btn-front-check" v-if="currentQuestionIndex === 6 && answerArray[6]" @click="finishQuestion">送出答案</button>

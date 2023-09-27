@@ -6,8 +6,8 @@
         <p>
           活動時間：即日起～2023/10/31<br>
           活動獎項：LINE POINTS 25點 (限量50名)<br>
-          活動辦法：凡參與測驗活動之網友皆具有抽獎資格，每人限兌領乙次。<br>
-          活動期間完整完成測驗之會員，活動小組將於活動後抽出，得獎資訊將以網站得獎名單公告為主，恕不另行通知。我方將於2023/11/6~11/20依據您在1111人力銀行註冊時填寫的信箱，寄送LINE POINTS序號。<a href="https://points.line.me/pointcode#/pointcode/form" target="_blank">【兌換序號請點我】</a>
+          活動辦法：凡參與測驗活動之會員皆具有抽獎資格，每人限兌領乙次。<br>
+          活動期間完整完成測驗之會員，活動小組將於活動後抽出，得獎資訊將以網站得獎名單公告為主，並以1111註冊信箱進行通知。我方將於2023/11/6~11/20依據您在1111人力銀行註冊時填寫的信箱，寄送LINE POINTS序號。<a href="https://points.line.me/pointcode#/pointcode/form" target="_blank">【兌換序號請點我】</a>
         </p>
         <button @click="goQuiz()">立即測驗</button>
         <Svg></Svg>
