@@ -181,7 +181,6 @@ import { getPathname } from '@/composable/usePathname.js'
 //       }
 //       postRSVCreate(payload);
 // const dd = loginCertificationFn();
-// console.log('dd', dd);
 
 const usePathname = getPathname()
 

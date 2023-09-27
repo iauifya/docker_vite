@@ -22,7 +22,7 @@ const renameIndexPlugin = newFilename => {
 
 export default ({ mode, command }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
-    console.log('process.env.VITE_API_ENV ', process.env.VITE_API_ENV );
+    // console.log('process.env.VITE_API_ENV ', process.env.VITE_API_ENV );
     return defineConfig({
         base: process.env.VITE_BASE_URL, // 專案路徑
         plugins: [

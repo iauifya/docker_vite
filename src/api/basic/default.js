@@ -4,7 +4,7 @@ import { isOpenLoading } from './apiFn.js'
 let pending = []; //宣告一個數組用於儲存每個請求的取消函式和axios標識
 let cancelToken = axios.CancelToken;
 let removePending = (config) => {
-  console.log(config);
+  // console.log(config);
   for (let i in pending) {
     if (pending[i].url === axios.defaults.baseURL + config.url) {
       //在當前請求在陣列中存在時執行取消函式

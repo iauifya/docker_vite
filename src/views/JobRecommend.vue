@@ -303,21 +303,19 @@ let payload = { apitype: 'signup', page: 1, backend: 0, talentNo: talentNO }
 const fetchResult = async()=> {
   await QuizResult(payload)
   .then(res => {
-    console.log(res.data.dataList[0].answer);
     quizResultOne.value= quizResult.find((item) => {
       return item.number === res.data.dataList[0].answer;
     })
-    console.log(quizResultOne)
+    
   })
   .catch(error => {
-    console.log(error);
+    
   });
   
 }
 
 onMounted(async() => {
   await fetchResult()
-  console.log(quizResultOne.value)
 
   if(!talentNO){
     router.replace('/jobrecommendlogin')
@@ -335,10 +333,9 @@ onMounted(async() => {
           salaryNum[1] == 0 ? salaryUnit + salaryNum[0] + '元': 
           jobList.value[i].salary + '元'
     }
-    // console.log(jobList.value)
   })
   .catch(error => {
-    console.log(error);
+
   });
 })
 

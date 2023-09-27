@@ -42,8 +42,7 @@
 onMounted(()=>{
     const navLinks = document.querySelectorAll('.nav-item')
     const navToggler = document.querySelector('.navbar-toggler')
-    // console.log(navLinks)
-    // console.log(navToggler)
+
     navLinks.forEach((navLink)=>{
         navLink.addEventListener('click',()=> {
             if(document.body.offsetWidth < 992){

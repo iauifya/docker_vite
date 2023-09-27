@@ -24,7 +24,7 @@ export async function corpGetFN() {
   await CorpGet().then(res => {
     if(!_.isEmpty(res)){
       corpList = res
-      console.log('corpList', res);
+      // console.log('corpList', res);
     }
   });
 
@@ -43,7 +43,7 @@ export async function RSVCreatePostFn(postData) {
   await RSVCreatePost(postData).then(res => {
     if(!_.isEmpty(res)){
       jobList = res
-      console.log('jobList', jobList);
+      // console.log('jobList', jobList);
     }
   });
 

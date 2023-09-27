@@ -110,10 +110,10 @@ Job(param.value)
           salaryNum[1] == 0 ? salaryUnit + salaryNum[0] + '元': 
           jobList.value[i].salary + '元'
     }
-    console.log(jobList.value)
+ 
   })
   .catch(error => {
-    console.log(error);
+   
   });
 
 </script>
