@@ -3,9 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-inner">
             <h1 v-if="isHomeRoute">
-            <a class="navbar-brand d-block p-0 m-0 py-2" href="https://www.1111.com.tw/" target="_blank"><img src="@/assets/images/logo-white-1111.svg" title="1111人力銀行" alt="1111人力銀行" width="165" height="39" decoding="async"><span class="logo-text">開學打工季</span></a>
+            <a class="navbar-brand d-block p-0 m-0 py-2" href="/" target=""><span class="logo-text">開學打工季</span></a>
             </h1>
-            <a v-else class="navbar-brand d-block p-0 m-0 py-2" href="https://www.1111.com.tw/"><img src="@/assets/images/logo-white-1111.svg" title="1111人力銀行" alt="1111人力銀行" width="165" height="39" decoding="async"><span class="logo-text">開學打工季</span></a>
+            <a v-else class="navbar-brand d-block p-0 m-0 py-2" href="/"><span class="logo-text">開學打工季</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>

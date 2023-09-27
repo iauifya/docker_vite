@@ -12,14 +12,14 @@ import winner from '@/views/Winner.vue'
 const router = createRouter ({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [
-    {
-      path: '/index.asp',
-      name: 'asp',
-      component: home,
-      meta: {
-        title: '首頁︱1111人力銀行'
-      }
-    },
+    // {
+    //   path: '/index.asp',
+    //   name: 'asp',
+    //   component: home,
+    //   meta: {
+    //     title: '首頁︱1111人力銀行'
+    //   }
+    // },
     {
       path: '/home',
       name: 'home',

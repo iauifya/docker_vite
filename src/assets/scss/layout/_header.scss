@@ -93,7 +93,8 @@ header {
         color: var(--system-white);
         display: block;
         @include b992 {
-            display: none;
+            // display: none;
+            font-size: 26px;
         }
     }
     .nav-item {
