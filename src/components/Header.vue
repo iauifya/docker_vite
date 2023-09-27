@@ -3,9 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-inner">
             <h1 v-if="isHomeRoute">
-            <a class="navbar-brand d-block p-0 m-0 py-2" href="/" target=""><span class="logo-text">開學打工季</span></a>
+            <router-link class="navbar-brand d-block p-0 m-0 py-2" to="/" target=""><span class="logo-text">開學打工季</span></router-link>
             </h1>
-            <a v-else class="navbar-brand d-block p-0 m-0 py-2" href="/"><span class="logo-text">開學打工季</span></a>
+            <router-link v-else class="navbar-brand d-block p-0 m-0 py-2" to="/"><span class="logo-text">開學打工季</span></router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
