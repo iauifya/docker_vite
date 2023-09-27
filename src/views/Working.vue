@@ -26,13 +26,13 @@
                                 <a href="https://1111.com.tw/216009/" target="_blank" class="popular-2">
                                     <picture>
                                         <source srcset="@/assets/images/partTime/img-popular-2.webp" type="image/webp">
-                                        <img src="@/assets/images/partTime/img-popular-2.jpg" alt="家教網" width="600" height="362" decoding="async">
+                                        <img src="@/assets/images/partTime/img-popular-2.png" alt="家教網" width="600" height="362" decoding="async">
                                     </picture>
                                 </a>
                                 <a href="https://1111.com.tw/216008/" target="_blank" class="popular-3">
                                     <picture>
                                         <source srcset="@/assets/images/partTime/img-popular-3.webp" type="image/webp">
-                                        <img src="@/assets/images/partTime/img-popular-3.jpg" alt="辦公室打工" width="600" height="360" decoding="async">
+                                        <img src="@/assets/images/partTime/img-popular-3.png" alt="辦公室打工" width="600" height="360" decoding="async">
                                     </picture>
                                 </a>
                             </div>

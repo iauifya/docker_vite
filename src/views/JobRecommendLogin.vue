@@ -46,7 +46,8 @@
                                 </div>
                             </template>
                             <div v-if="!jobList.length">
-                                <img :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 20% auto" >
+                                <img v-if="!loseJobList" :src="loading" alt="Loading..." style="display: block; width: 60%; margin: 20% auto" >
+                                <div v-if="loseJobList" style="margin: 50% 25%; font-weight: bold; font-size: 18px">職缺尚在更新中</div>
                             </div>
                         </div>
                         <div class="btn-view-more pt-2">
@@ -78,6 +79,7 @@ const usePathname = getPathname()
 const talentNO = useTalentNO()
 
 const jobList = ref([])
+const loseJobList = ref(false)
 
 const login = ()=>{
     if(!talentNO){
@@ -99,6 +101,7 @@ const param = ref({
 
 Job(param.value)
   .then(res => {
+    if(!res.data.length) loseJobList.value = true
     jobList.value = res.data?.splice(0, 4)
     for (let i = 0; i < jobList.value.length; i++) {
       let salaryNum = jobList.value[i].salary.split(' ')[1].split('~')
