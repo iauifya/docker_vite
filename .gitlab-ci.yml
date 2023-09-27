@@ -50,7 +50,7 @@ deploy-product:
   only :
   - main
   script:
-    - lftp -u $FTP_account,$FTP_password 192.168.8.102 -e "lcd /builds/engineering-department-activityzoneteam/202309candypt/public/ ; mirror -e --exclude .git  --exclude-glob *.md  --exclude-glob *.yml -Revp . event23/candyPT/ ; quit"
+    - lftp -u $FTP_account,$FTP_password 192.168.8.101 -e "lcd /builds/engineering-department-activityzoneteam/202309candypt/public/ ; mirror -e --exclude .git  --exclude-glob *.md  --exclude-glob *.yml -Revp . event23/candyPT/ ; quit"
   #when: manual
   tags :
   - event
