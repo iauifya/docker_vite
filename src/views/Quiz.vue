@@ -203,10 +203,6 @@ const nextQuestion = (answer,time)=>{
   
   if(checkclick.value == 1){ return false ;}
 
-  console.log("answerArray.length",answerArray.length)
-  console.log("currentQuestionIndex.value",currentQuestionIndex.value)
-  console.log("answerArray",answerArray)
-
     if(!answer || answer == 0){
 
       alert('請選一個答案唷~')
@@ -249,15 +245,9 @@ const finishQuestion = () =>{
   });
 
 
-  console.log("answerArray.indexOf(0)",answerArray.indexOf(0))
-  console.log("checkemty",checkemty.value)
-
-
   if (answerArray.indexOf(0) > -1 || answerArray.indexOf(undefined) > -1  || checkemty.value > 0 ){
     alert('目前有問題還沒有填喔，請幫我點選上一題檢查是否有漏填!!')
   }else{
-
-    console.log('提交答案', answerArray);
     
     const possibleNumbers = [1, 2, 3, 4];
     let result = possibleNumbers.reduce((obj, item) => {

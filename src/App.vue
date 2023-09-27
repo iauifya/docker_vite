@@ -11,7 +11,7 @@
 
 
 <script setup>
-  console.log('env', import.meta.env.VITE_MEMBER_LOGIN);
+  // console.log('env', import.meta.env.VITE_MEMBER_LOGIN);
   import Header from "@/components/Header.vue";
   import Footer from "@/components/Footer.vue";
 </script>

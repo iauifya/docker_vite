@@ -39,8 +39,6 @@ const mainElement = ref()
 
 
 
-console.log(talentNO)
-
 const goQuiz = ()=> {
   if(!talentNO){
     alert('您尚未登入');
@@ -90,7 +88,6 @@ onMounted(() => {
   navHeight = document.querySelector('.navbar').clientHeight;
   footerHeight = document.querySelector('footer').clientHeight;
   // mainElement = document.querySelector('.description-block');
-  console.log(mainElement.value)
   window.addEventListener('load',setHeight)
   window.addEventListener('resize', changeHeight);
 
