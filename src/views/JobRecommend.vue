@@ -303,10 +303,14 @@ let payload = { apitype: 'signup', page: 1, backend: 0, talentNo: talentNO }
 const fetchResult = async()=> {
   await QuizResult(payload)
   .then(res => {
-    quizResultOne.value= quizResult.find((item) => {
-      return item.number === res.data.dataList[0].answer;
-    })
-    
+    if(!res.data.dataList.length){
+      alert('你尚未測驗過唷，請前往測驗頁')
+      router.replace('/quiz')
+    }else {
+      quizResultOne.value= quizResult.find((item) => {
+        return item.number === res.data.dataList[0].answer;
+      })
+    }
   })
   .catch(error => {
     
