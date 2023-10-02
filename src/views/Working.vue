@@ -96,7 +96,7 @@
                                 <div class="swiper-slide">
                                     <a href="https://1111.com.tw/216013/" target="_blank" class="d-block text-center">
                                         <picture class="d-block">
-                                            <source srcset="@/assets/images/partTime/img-theme-2.webp" type="image/webp">
+                                            <source srcset="@/assets/images/partTime/img-theme-2-1.webp" type="image/webp">
                                             <img src="@/assets/images/partTime/img-theme-2.png" alt="一起歐趴吧!" width="419" height="307" decoding="async" loading="lazy">
                                         </picture>
                                         <div class="py-2 sub-title">一起歐趴吧!</div>
