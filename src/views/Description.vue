@@ -28,12 +28,10 @@ import { useRouter, useRoute } from "vue-router";
 // import { loginCertificationFn} from '@/composition-api/index';
 
 import { TalentNo } from '@/api/apiAll/shared';
-import { getPathname } from '@/composable/usePathname.js'
 import Svg from '@/components/svg.vue'
 
 const talentNO = TalentNo()
 const router = useRouter()
-const usePathname = getPathname()
 
 const mainElement = ref()
 

@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
- import { ref,onMounted,computed } from 'vue';
+ import { ref,onMounted,computed,watchEffect } from 'vue';
  import { useRoute } from "vue-router";
  import { storeToRefs } from "pinia";
  import { useAll } from "@/stores/all.js";
@@ -36,8 +36,9 @@
  const { pathname } = storeToRefs(useAlls)
  const isHomeRoute = computed(() => route.path === '/home' || route.path === '/');
 
-
-
+watchEffect(() => {
+    pathname.value = route.path.split('/')[1]
+})
 
 onMounted(()=>{
     const navLinks = document.querySelectorAll('.nav-item')

@@ -107,9 +107,5 @@ onBeforeUnmount(() => {
   // window.removeEventListener('resize', changeHeight);
 })
 
-import { getPathname } from '@/composable/usePathname.js'
-
-const usePathname = getPathname()
-
 </script>
 
