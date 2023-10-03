@@ -59,7 +59,6 @@ import { ref,reactive, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 import { loginCertificationFn} from '@/composition-api/index'
 import { useTalentNO } from '@/composable/useTalentNO.js'
-import { getPathname } from '@/composable/usePathname.js'
 import calcScore from '@/composable/calcScore.js'
 import one from "@/assets/images/questions/person_01.svg";
 import two from "@/assets/images/questions/person_02.svg";
@@ -70,7 +69,6 @@ import { SendQuiz } from "../api/apiAll/quiz.js";
 const router = useRouter();
 const route = useRoute();
 
-const usePathname = getPathname()
 const talentNO = useTalentNO()
 
 // const currentAnswer = ref(1)

@@ -3,6 +3,6 @@ export const useAll = defineStore({
   id: 'all',
   state: () => ({
     loading: false, // loading 開關
-    pathname: 'home'
+    pathname: ''
   }),
 })

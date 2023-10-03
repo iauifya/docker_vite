@@ -171,7 +171,6 @@
 
 <script setup>
 import { onMounted } from "vue";
-import { getPathname } from '@/composable/usePathname.js'
 //import { loginCertificationFn} from '@/composition-api/index';
 // import TheWelcome from '../components/TheWelcome.vue'
 // import { postRSVCreate} from '@/composition-api/index';
@@ -181,8 +180,6 @@ import { getPathname } from '@/composable/usePathname.js'
 //       }
 //       postRSVCreate(payload);
 // const dd = loginCertificationFn();
-
-const usePathname = getPathname()
 
 let swiper
 
