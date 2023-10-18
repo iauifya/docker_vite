@@ -2,7 +2,7 @@
     <footer>
     <div class="container-inner text-center">全球華人股份有限公司版權所有  © 1111 Job Bank All Rights Reserved.</div>
     </footer>
-    <div class="slide-float position-fixed d-none d-md-block">
+    <div class="slide-float position-fixed d-block">
         <ul>
             <li><a href="javascript:;" @click="copyURL" class="d-block"><img src="@/assets/images/icon-share.svg" alt="分享複製連結" width="45" height="45" decoding="async"></a></li>
             <!-- <li><a href="https://instagram.com/1111studentjobs?igshid=MWZjMTM2ODFkZg==" class="d-block"><img src="@/assets/images/icon-ig.svg" alt="ig貼文" width="45" height="45" decoding="async"></a></li> -->

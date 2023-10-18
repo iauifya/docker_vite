@@ -48,9 +48,9 @@
                     </div>
                     <div class="hotSearch-content d-flex flex-wrap align-items-center justify-content-center">
                         <div class="item">
-                            <a href="https://parttime.1111.com.tw/jobList.asp?ssi=1&tt=2,4&ks=%E5%A4%A7%E5%89%B5,%E8%87%BA%E9%9A%86%E5%B7%A5%E6%A5%AD,%E5%90%8D%E5%89%B5%E5%84%AA%E5%93%81,%E5%AE%9C%E5%AE%B6%E5%AE%B6%E5%B1%85,%E5%AE%9C%E5%BE%97%E5%88%A9%E5%AE%B6%E5%B1%85,%E7%89%B9%E5%8A%9B%E5%B1%8B%E8%82%A1%E4%BB%BD,%E7%94%9F%E6%B4%BB%E5%B7%A5%E5%A0%B4,%E4%BD%B3%E7%91%AA%E7%99%BE%E8%B2%A8,%E5%AF%B6%E9%9B%85,%E5%B0%8F%E5%8C%97%E7%99%BE%E8%B2%A8,%E5%85%89%E5%8D%97%E5%A4%A7%E6%89%B9%E7%99%BC,%E9%87%91%E8%88%88%E7%99%BC&agent=parttime_hotjob_lifestore" target="_blank" class="d-flex flex-column">
-                                <span class="photo"><img src="@/assets/images/partTime/icon-hotSearch-1.svg" alt="生活儀式感" width="98" height="98"></span>
-                                <span class="caption text-center pt-3">生活儀式感</span>
+                            <a href="https://1111.com.tw/219039/" target="_blank" class="d-flex flex-column">
+                                <span class="photo"><img src="@/assets/images/partTime/icon-hotSearch-1.svg" alt="生活百貨" width="98" height="98"></span>
+                                <span class="caption text-center pt-3">生活百貨</span>
                             </a>
                         </div>
                         <div class="item">
@@ -61,12 +61,12 @@
                         </div>
                         <div class="item">
                             <a href="https://1111.com.tw/216034/" target="_blank" class="d-flex flex-column">
-                                <span class="photo"><img src="@/assets/images/partTime/icon-hotSearch-3.svg" alt="AI打工/實習" width="98" height="98"></span>
-                                <span class="caption text-center pt-3">AI打工/實習</span>
+                                <span class="photo"><img src="@/assets/images/partTime/icon-hotSearch-3.svg" alt="科技打工/實習" width="98" height="98"></span>
+                                <span class="caption text-center pt-3">科技打工/實習</span>
                             </a>
                         </div>
                         <div class="item">
-                            <a href="https://parttime.1111.com.tw/jobList.asp?ssi=1&tt=2,4&ks=%E5%B1%95%E8%A6%BD,%E5%B1%95%E5%A0%B4,%E6%B4%BB%E5%8B%95,%E6%9C%83%E5%A0%B4,%E9%85%92%E5%90%A7,%E4%BF%83%E9%8A%B7,%E6%AA%94%E6%9C%9F,%E6%A8%A1%E7%89%B9%E5%85%92&agent=parttime_mid_show" target="_blank" class="d-flex flex-column">
+                            <a href="https://1111.com.tw/219040/" target="_blank" class="d-flex flex-column">
                                 <span class="photo"><img src="@/assets/images/partTime/icon-hotSearch-4.svg" alt="熱愛第一線" width="98" height="98"></span>
                                 <span class="caption text-center pt-3">熱愛第一線</span>
                             </a>
