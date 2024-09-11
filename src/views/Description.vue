@@ -83,6 +83,7 @@ let changeHeight = () => {
   }, 100);
 }
 onMounted(() => {
+  console.log('talentNO',talentNO)
   navHeight = document.querySelector('.navbar').clientHeight;
   footerHeight = document.querySelector('footer').clientHeight;
   // mainElement = document.querySelector('.description-block');

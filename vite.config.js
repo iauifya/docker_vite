@@ -29,6 +29,12 @@ export default ({ mode, command }) => {
           vue(),
           renameIndexPlugin('index.asp'),
         ],
+        server: {
+          // port: 8080,
+          // host: true,
+          // strictPort: true,
+          // origin: "http://0.0.0.0:8080",
+        },
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, 'src'),
@@ -49,7 +55,8 @@ export default ({ mode, command }) => {
             // assetsDir: "wap", //指定生成静态资源的存放路径
         },
         define: {
-            'process.env': {},
+          // 'VITE_BASE_URL': process.env.VITE_BASE_URL,
+          'process.env': {},
         },
     })
 }
